@@ -5,6 +5,9 @@ module.exports = {
     extend: {
       colors: {
         mainBg: "#FAFAFA",
+        darkGray: "#636363",
+        lightGray: "rgba(99, 99, 99, 0.17)",
+        blackText: "#181619",
       },
     },
   },

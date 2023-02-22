@@ -27,3 +27,31 @@
   height: 6px;
   background-color: transparent;
 }
+
+.switch {
+  width: 40px;
+  height: 20px;
+  position: relative;
+  border-radius: 10px;
+  @apply bg-darkGray shadow-sm;
+}
+.switch::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.switch.toggled::after {
+  transform: translateX(100%);
+}
+
+.input-field {
+  @apply w-full outline-none bg-white border-[1.5px] focus:border-black rounded-md text-black placeholder:text-darkGray p-3;
+}

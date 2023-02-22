@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useState } from "react";
+import React, { FC, ReactElement, useEffect, useState } from "react";
 import { MdOutlineDashboard } from "react-icons/md";
 import { FaRegUser } from "react-icons/fa";
 import { FiUsers, FiCalendar } from "react-icons/fi";
@@ -24,9 +24,14 @@ const links = [
 
 type DashboardProps = {
   children?: ReactElement[] | ReactElement;
+  pageTitle: string;
 };
-const DashboardLayout: FC<DashboardProps> = ({ children }) => {
+const DashboardLayout: FC<DashboardProps> = ({ children, pageTitle }) => {
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    document.title = `Edmedy | ${pageTitle}`;
+  }, []);
   return (
     <section className="w-full min-h-screen bg-mainBg">
       {/* Sidebar */}
@@ -43,7 +48,7 @@ const DashboardLayout: FC<DashboardProps> = ({ children }) => {
               <Squash toggled={false} size={23} toggle={setSidebarOpen} />
             </span>
             <h1 className="text-[24px] font-bold text-[#444] sm:block hidden">
-              Dashboard
+              {pageTitle}
             </h1>
           </div>
           <div className="flex items-center gap-x-3 sm:gap-x-5">
@@ -68,7 +73,7 @@ const DashboardLayout: FC<DashboardProps> = ({ children }) => {
         </nav>
         <main className="py-8 px-6">
           <h1 className="text-[26px] font-bold text-[#444] sm:hidden mb-4">
-            Dashboard
+            {pageTitle}
           </h1>
 
           {children}

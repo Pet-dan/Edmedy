@@ -9,10 +9,14 @@ import Sickbay from "./pages/Admin/Sickbay";
 import Staffs from "./pages/Admin/Staffs";
 import Store from "./pages/Admin/Store";
 import Students from "./pages/Admin/Students";
+import SubscriptionPlans from "./pages/SubscriptionPlans";
 
 function App() {
   return (
     <Routes>
+      <Route path="/subscription-plans" element={<SubscriptionPlans />} />
+      <Route path="*" element={<Error />} />
+
       <Route path="/admin/">
         <Route path="dashboard" element={<AdminDashboard />} />
         <Route path="staffs" element={<Staffs />} />
@@ -23,7 +27,6 @@ function App() {
         <Route path="store" element={<Store />} />
         <Route path="settings" element={<Settings />} />
       </Route>
-      <Route path="*" element={<Error />} />
     </Routes>
   );
 }
