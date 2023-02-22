@@ -10,9 +10,12 @@ import Staffs from "./pages/Admin/Staffs";
 import Store from "./pages/Admin/Store";
 import Students from "./pages/Admin/Students";
 
+import Landing from "./pages/Landing";
 function App() {
   return (
     <Routes>
+      <Route path="/" element={ <Landing/>} />
+
       <Route path="/admin/">
         <Route path="dashboard" element={<AdminDashboard />} />
         <Route path="staffs" element={<Staffs />} />
