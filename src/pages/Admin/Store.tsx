@@ -1,7 +1,8 @@
 import React from "react";
+import DashboardLayout from "../../components/DashboardLayout";
 
 const Store = () => {
-  return <div>Store</div>;
+  return <DashboardLayout></DashboardLayout>;
 };
 
 export default Store;

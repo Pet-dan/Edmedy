@@ -1,7 +1,8 @@
 import React from "react";
+import DashboardLayout from "../../components/DashboardLayout";
 
 const Calendar = () => {
-  return <div>Calendar</div>;
+  return <DashboardLayout></DashboardLayout>;
 };
 
 export default Calendar;

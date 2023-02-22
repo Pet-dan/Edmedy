@@ -1,7 +1,7 @@
 import React from "react";
-
+import DashboardLayout from "../../components/DashboardLayout";
 const Bursary = () => {
-  return <div>Bursary</div>;
+  return <DashboardLayout></DashboardLayout>;
 };
 
 export default Bursary;

@@ -1,7 +1,8 @@
 import React from "react";
+import DashboardLayout from "../../components/DashboardLayout";
 
 const Staffs = () => {
-  return <div>Staffs</div>;
+  return <DashboardLayout></DashboardLayout>;
 };
 
 export default Staffs;

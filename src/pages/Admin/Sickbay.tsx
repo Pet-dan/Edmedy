@@ -1,7 +1,8 @@
 import React from "react";
+import DashboardLayout from "../../components/DashboardLayout";
 
 const Sickbay = () => {
-  return <div>Sickbay</div>;
+  return <DashboardLayout></DashboardLayout>;
 };
 
 export default Sickbay;
