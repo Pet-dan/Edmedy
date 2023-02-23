@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { RiMessageFill } from "react-icons/ri";
 import logo from "../assets/images/logo.png";
+import NavBar from "../components/NavBar";
 import Step1 from "../components/SubscriptionPlans/Step1";
 import Step2 from "../components/SubscriptionPlans/Step2";
 import Step3 from "../components/SubscriptionPlans/Step3";
@@ -29,28 +30,10 @@ const SubscriptionPlans = () => {
 
   return (
     <section className="w-full min-h-screen bg-mainBg">
-      <div className="py-[3rem] md:px-[3rem] sm:px-[2rem] px-[1rem] max-w-[1300px] mx-auto">
-        <header className="flex justify-between items-center gap-x-4">
-          <div>
-            <img
-              src={logo}
-              alt="logo"
-              loading="lazy"
-              className="md:w-[150px] w-[120px]"
-            />
-          </div>
-          <div className="flex items-center gap-x-3 text-darkGray">
-            <span className="text-[18px]">
-              <RiMessageFill />
-            </span>
-            <p className="hidden sm:block underline">
-              Frequently Asked Questions
-            </p>
-            <p className="sm:hidden block underline">FAQs</p>
-          </div>
-        </header>
+      <div className="max-w-[1300px] mx-auto">
+        <NavBar />
 
-        <div className="flex items-center gap-x-4 justify-center w-full mt-14">
+        <div className="flex items-center gap-x-4 justify-center w-full mt-14 py-[1rem] md:px-[3rem] sm:px-[2rem] px-[1rem]">
           {Array(4)
             .fill(null)
             .map((steps, index: number) => {

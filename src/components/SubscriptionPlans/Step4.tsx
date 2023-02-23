@@ -18,13 +18,16 @@ const Step4: FC<StepProps> = ({ increaseStep }) => {
     setAdminsDetails([
       ...adminsDetails,
       {
-        id: adminsDetails[adminsDetails.length - 1]?.id + 1,
+        id: new Date().getTime(),
         username: "",
         email: "",
         confirm_email: "",
       },
     ]);
     setNumberOfAdmins(numberOfAdmins + 1);
+  };
+  const removeAdmin = (id: number) => {
+    setAdminsDetails((prev) => prev.filter((admin) => admin.id !== id));
   };
 
   const updateAdminDetails = (id: number, key: string, value: string) => {
@@ -52,7 +55,7 @@ const Step4: FC<StepProps> = ({ increaseStep }) => {
           recipients
         </p>
       </header>
-      <form className="mt-8 mb-6 w-full max-w-[600px] mx-auto max-h-[500px] overflow-hidden overflow-y-scroll">
+      <form className="mt-8 sm:px-3 mb-6 w-full max-w-[600px] mx-auto max-h-[500px] overflow-hidden overflow-y-scroll">
         {adminsDetails.map((singleAdmin, index: number) => {
           const inputFields: InputFields[] = [
             {
@@ -79,7 +82,19 @@ const Step4: FC<StepProps> = ({ increaseStep }) => {
           ];
           return (
             <article key={index} className="mb-4">
-              <p className="mb-3 font-bold">Super administrator {index + 1}</p>
+              <header className="w-full flex items-center justify-between gap-x-4 mb-3">
+                <p className=" font-bold">Super administrator {index + 1}</p>
+                {adminsDetails.length > 1 && (
+                  <button
+                    className="py-3 px-4 bg-black text-white cursor-pointer rounded-md"
+                    onClick={() => {
+                      removeAdmin(singleAdmin.id);
+                    }}
+                  >
+                    Remove
+                  </button>
+                )}
+              </header>{" "}
               <div className="w-full p-6 rounded-md bg-white shadow-md">
                 {inputFields.map((field, index: number) => {
                   return (
