@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <NavBar/>
+      {/* <NavBar/> */}
       <Provider store={store}>
         <App />
       </Provider>

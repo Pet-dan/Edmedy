@@ -9,13 +9,17 @@ import Sickbay from "./pages/Admin/Sickbay";
 import Staffs from "./pages/Admin/Staffs";
 import Store from "./pages/Admin/Store";
 import Students from "./pages/Admin/Students";
+import SubscriptionPlans from "./pages/SubscriptionPlans";
 
 import Landing from "./pages/Landing";
+import FAQ from "./pages/Faq";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={ <Landing/>} />
-
+      <Route path="/subscription-plans" element={<SubscriptionPlans />} />
+      <Route path="*" element={<Error />} />
+      <Route path="/" element={<Landing />} />
+      <Route path="/faq" element={<FAQ />} />
       <Route path="/admin/">
         <Route path="dashboard" element={<AdminDashboard />} />
         <Route path="staffs" element={<Staffs />} />
@@ -26,7 +30,6 @@ function App() {
         <Route path="store" element={<Store />} />
         <Route path="settings" element={<Settings />} />
       </Route>
-      <Route path="*" element={<Error />} />
     </Routes>
   );
 }
