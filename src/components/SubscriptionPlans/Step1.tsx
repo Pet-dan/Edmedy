@@ -149,7 +149,7 @@ const Step1: FC<StepProps> = ({ increaseStep }) => {
                   {plan.description}
                 </p>
                 <h2 className="text-[26px] mt-4 font-bold text-start">
-                  # {plan.price.toLocaleString()}{" "}
+                  ₦ {plan.price.toLocaleString()}{" "}
                   <sup className="text-[16px] text-darkGray mt-2 font-light">
                     / {paymentType}
                   </sup>
