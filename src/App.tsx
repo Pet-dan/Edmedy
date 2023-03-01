@@ -13,12 +13,14 @@ import SubscriptionPlans from "./pages/SubscriptionPlans";
 
 import Landing from "./pages/Landing";
 import FAQ from "./pages/Faq";
+import SignUp from "./pages/SignUp";
 function App() {
   return (
     <Routes>
       <Route path="/subscription-plans" element={<SubscriptionPlans />} />
       <Route path="*" element={<Error />} />
       <Route path="/" element={<Landing />} />
+      <Route path="/signup" element={<SignUp/>} />
       <Route path="/faq" element={<FAQ />} />
       <Route path="/admin/">
         <Route path="dashboard" element={<AdminDashboard />} />
