@@ -53,5 +53,47 @@
 }
 
 .input-field {
-  @apply w-full outline-none bg-white border-[1.5px] focus:border-black rounded-md text-black placeholder:text-darkGray p-3;
+  @apply w-full outline-none bg-white border-[1.5px] focus:border-black rounded-md text-black placeholder:text-darkGray px-3 py-2;
+}
+
+/* svgs for progress container */
+
+svg.progress-bar {
+  width: 200px;
+  height: 200px;
+  transform: rotate(-90deg);
+  overflow: initial;
+}
+
+.progress-bar circle {
+  stroke-width: 10px;
+  fill: none;
+}
+
+.progress-bar circle:nth-child(1) {
+  stroke: #5151f536;
+}
+.progress-bar circle:nth-child(2) {
+  stroke: royalblue;
+  position: relative;
+  z-index: 1;
+}
+.circle_box circle:nth-child(2) {
+}
+.circle_box {
+  font-size: 36px;
+  @apply text-darkGray;
+  text-align: center;
+}
+.circle_box div {
+  position: relative;
+  max-width: fit-content;
+}
+.circle_box span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  @apply text-darkGray;
+  font-size: 1.5rem;
 }

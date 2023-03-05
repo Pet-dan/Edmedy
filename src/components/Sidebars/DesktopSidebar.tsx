@@ -2,12 +2,7 @@ import React, { FC, useState } from "react";
 import logo from "../../assets/images/logo.png";
 import logoSmall from "../../assets/images/logo-small.png";
 import { Link, useLocation } from "react-router-dom";
-import { SidebarLink } from "../../types/types";
-
-type DesktopSidebarProps = {
-  links: SidebarLink[];
-};
-
+import { DesktopSidebarProps } from "../../types/componentsProps.types";
 const DesktopSidebar: FC<DesktopSidebarProps> = ({ links }) => {
   const location = useLocation();
   const [descOpen, setDescOpen] = useState<boolean>(false);
@@ -29,23 +24,23 @@ const DesktopSidebar: FC<DesktopSidebarProps> = ({ links }) => {
     <>
       {descOpen && (
         <p
-          className={`fixed left-[90px] md:hidden sm:flex hidden ${descPosition} h-[48px] bg-black text-white cursor-pointer z-[5] p-4 rounded-md min-w-[150px] justify-center items-center`}
+          className={`fixed left-[90px] lg:hidden sm:flex hidden ${descPosition} h-[48px] bg-black text-white cursor-pointer z-[5] p-4 rounded-md min-w-[150px] justify-center items-center`}
           style={{ top: `${descPosition}px` }}
         >
           {descText}
         </p>
       )}
-      <aside className="md:w-[280px] sm:min-h-screen sm:max-h-fit fixed top-0 left-0 z-[3] overflow-hidden overflow-y-scroll sm:py-8 py-4 px-4 md:px-7 sm:border-r-2 sm:w-[80px] sm:shadow-none shadow-md sm:rounded-none rounded-md bg-mainBg sm:block hidden">
+      <aside className="lg:w-[280px] sm:min-h-screen sm:max-h-fit fixed top-0 left-0 z-[3] overflow-hidden overflow-y-scroll sm:py-8 py-4 px-4 lg:px-7 sm:border-r-2 sm:w-[80px] sm:shadow-none shadow-md sm:rounded-none rounded-md bg-mainBg lg:bg-white sm:block hidden">
         <img
           src={logo}
           alt="logo"
           loading="lazy"
-          className="md:w-[150px] md:block hidden"
+          className="lg:w-[150px] lg:block hidden"
         />
         <img
           src={logoSmall}
           alt="logo"
-          className="w-[80px] md:hidden sm:block hidden"
+          className="w-[80px] lg:hidden sm:block hidden"
         />
         <div className="mt-8 w-full flex flex-col gap-y-4">
           {links.map((link, index: number) => {
@@ -66,13 +61,13 @@ const DesktopSidebar: FC<DesktopSidebarProps> = ({ links }) => {
                   location.pathname === link.href
                     ? "bg-black text-mainBg"
                     : "bg-transparent text-gray-800 hover:bg-[rgba(0,0,0,.1)]"
-                } p-3 rounded-md cursor-pointer text-center md:text-start w-[50px] md:min-w-[100%]`}
+                } p-3 rounded-md cursor-pointer text-center lg:text-start w-[50px] lg:min-w-[100%]`}
               >
-                <span className="inline-block md:mr-2 align-middle">
+                <span className="inline-block lg:mr-2 align-middle">
                   {link.icon}
                 </span>{" "}
                 {/* hover text */}
-                <p className="md:inline-block hidden">{link.text}</p>
+                <p className="lg:inline-block hidden">{link.text}</p>
               </Link>
             );
           })}

@@ -1,14 +1,8 @@
 import React, { Dispatch, FC, SetStateAction } from "react";
 import { useLocation, Link } from "react-router-dom";
-import { SidebarLink } from "../../types/types";
+import { MobileSidebarProps } from "../../types/componentsProps.types";
 import { Squash } from "hamburger-react";
 import logo from "../../assets/images/logo.png";
-
-type MobileSidebarProps = {
-  links: SidebarLink[];
-  sidebarOpen: boolean;
-  setSidebarOpen: Dispatch<SetStateAction<boolean>>;
-};
 
 const MobileSidebar: FC<MobileSidebarProps> = ({
   links,

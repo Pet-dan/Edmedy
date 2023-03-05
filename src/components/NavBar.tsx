@@ -7,7 +7,9 @@ const NavBar = () => {
   return (
     <div>
       <div className="flex flex-wrap justify-center sm:justify-between w-full p-10 gap-4 items-center m-auto">
-        <img src={logo} alt="" className="w-40 " />
+        <Link to={"/"}>
+          <img src={logo} alt="" className="w-40 " />
+        </Link>
         <div className="flex items-center  ">
           <img src={question} alt="" />
           <Link to="/faq" className="ml-3 hover:underline hover:decoration-1  ">

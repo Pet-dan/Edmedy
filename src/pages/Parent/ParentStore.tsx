@@ -1,8 +1,8 @@
 import React from "react";
 import DashboardLayout from "../../components/DashboardLayout";
 
-const Store = () => {
+const ParentStore = () => {
   return <DashboardLayout pageTitle="Store"></DashboardLayout>;
 };
 
-export default Store;
+export default ParentStore;

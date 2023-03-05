@@ -1,8 +1,8 @@
 import React from "react";
 import DashboardLayout from "../../components/DashboardLayout";
 
-const Settings = () => {
+const TeacherSettings = () => {
   return <DashboardLayout pageTitle="Settings"></DashboardLayout>;
 };
 
-export default Settings;
+export default TeacherSettings;
