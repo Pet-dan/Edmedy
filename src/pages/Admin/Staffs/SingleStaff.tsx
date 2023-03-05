@@ -14,7 +14,6 @@ import { Link } from "react-router-dom";
 const tabs: TabsProps[] = [
   { title: "Profile", component: <Profile /> },
   { title: "Employment Record", component: <EmploymentRecord /> },
-  { title: "Lesson Notes", component: <LessonNotes /> },
 ];
 
 const SingleStaff = () => {

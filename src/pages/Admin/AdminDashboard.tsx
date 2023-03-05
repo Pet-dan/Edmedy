@@ -1,6 +1,6 @@
 import React from "react";
 import { FaUser, FaUsers } from "react-icons/fa";
-import ContentBox from "../../components/UI/ContentBox";
+import { ContentBox } from "../../components/UI/ContentBox";
 import DashboardLayout from "../../components/DashboardLayout";
 import ProgressBar from "../../components/ProgressBar";
 import {

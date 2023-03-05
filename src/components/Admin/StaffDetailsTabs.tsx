@@ -15,9 +15,10 @@ import TableLayout, {
   TableRow,
   TableRowsContainer,
 } from "../TableLayout";
-import ContenBoxWithAvatar, {
+import {
+  ContentBoxWithAvatar,
   ContentBoxWithAvatarHeader,
-} from "../UI/ContenBoxWithAvatar";
+} from "../UI/ContentBox";
 
 const getDetails = (list: any, keyPair: string): ReactElement => {
   return (
@@ -46,7 +47,7 @@ export const Profile = () => {
     <>
       <div className="w-full flex gap-4 xl:flex-row flex-col">
         <div className="flex-[60%]">
-          <ContenBoxWithAvatar
+          <ContentBoxWithAvatar
             avatar={<BiUser />}
             header={"General Information"}
             hasButton={false}
@@ -65,10 +66,10 @@ export const Profile = () => {
                 {getDetails(singleStaffDetails, "nextOfKin")}
               </div>
             </section>
-          </ContenBoxWithAvatar>
+          </ContentBoxWithAvatar>
         </div>
         <div className="flex-[40%] space-y-4">
-          <ContenBoxWithAvatar
+          <ContentBoxWithAvatar
             avatar={<GiTie />}
             header={"Role Details"}
             hasButton={false}
@@ -76,8 +77,8 @@ export const Profile = () => {
             <section className={styles.content_rows}>
               {getDetails(singleStaffDetails, "role")}
             </section>
-          </ContenBoxWithAvatar>
-          <ContenBoxWithAvatar
+          </ContentBoxWithAvatar>
+          <ContentBoxWithAvatar
             avatar={<GiBank />}
             header={"Account Information"}
             hasButton={false}
@@ -88,7 +89,7 @@ export const Profile = () => {
             <section className={styles.content_rows}>
               {getDetails(singleStaffDetails, "accountInfo")}
             </section>
-          </ContenBoxWithAvatar>
+          </ContentBoxWithAvatar>
         </div>
       </div>
     </>

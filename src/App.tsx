@@ -1,9 +1,13 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 // General
 import Landing from "./pages/Landing";
 import FAQ from "./pages/Faq";
 import Error from "./pages/404";
+import Password from "./pages/PasswordReset";
+import Preloader from "./components/Preloader";
+import Signup from "./pages/SignUp";
+
 // Admin
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import Bursary from "./pages/Admin/Bursary";
@@ -35,12 +39,23 @@ import Teachings from "./pages/Teacher/Teachings";
 import SingleStaff from "./pages/Admin/Staffs/SingleStaff";
 
 function App() {
-  return (
+  const location = useLocation();
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 5000);
+  });
+  return loading && location.pathname === "/" ? (
+    <Preloader />
+  ) : (
     <Routes>
       <Route path="/subscription-plans" element={<SubscriptionPlans />} />
       <Route path="*" element={<Error />} />
       <Route path="/" element={<Landing />} />
       <Route path="/faq" element={<FAQ />} />
+      <Route path="/sign-up" element={<Signup />} />
+      <Route path="/password-reset" element={<Password />} />
       <Route path="/admin/">
         <Route path="dashboard" element={<AdminDashboard />} />
         <Route path="staffs/">

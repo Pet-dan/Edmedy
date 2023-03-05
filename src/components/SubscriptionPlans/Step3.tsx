@@ -2,6 +2,7 @@ import React, { ChangeEvent, FC, useState } from "react";
 import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 import { countryList } from "../../assets/static";
 import { StepProps } from "../../pages/SubscriptionPlans";
+import { BsArrowRight } from "react-icons/bs";
 import {
   InputFields,
   paymentDetailsProps,
@@ -170,13 +171,16 @@ const Step3: FC<StepProps> = ({ increaseStep }) => {
             </div>
           );
         })}
-        <button
-          type="submit"
-          className="w-full bg-black text-white rounded-md font-[500] p-3"
-        >
-          Submit
-        </button>
       </form>
+      <button
+        className="max-w-full min-w-full sm:min-w-fit sm:max-w-fit ml-auto py-3 px-6 bg-black text-mainBg rounded-md block mt-6"
+        onClick={increaseStep}
+      >
+        Proceed{" "}
+        <span className="inline-block align-middle ml-2">
+          <BsArrowRight />
+        </span>
+      </button>
     </>
   );
 };
