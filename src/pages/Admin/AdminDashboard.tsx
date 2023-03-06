@@ -183,7 +183,6 @@ const AdminDashboard = () => {
                     left: 0,
                     bottom: 0,
                   }}
-                  style={{ cursor: "pointer" }}
                 >
                   <CartesianGrid strokeDasharray="3" />
 
