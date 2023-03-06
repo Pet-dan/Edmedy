@@ -60,7 +60,7 @@ const SingleStaff = () => {
             </div>
           </div>
           <div className=" flex gap-4 flex-wrap sm:flex-nowrap">
-            <OutlineButton icon={<BiPaperPlane />} text={"Send Notification"} />
+            {/* <OutlineButton icon={<BiPaperPlane />} text={"Send Notification"} /> */}
             <ButtonFilled icon={<BiPlus />} text={"Edit Staff Ptofile"} />
           </div>
         </header>

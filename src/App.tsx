@@ -54,7 +54,7 @@ function App() {
       <Route path="*" element={<Error />} />
       <Route path="/" element={<Landing />} />
       <Route path="/faq" element={<FAQ />} />
-      <Route path="/sign-up" element={<Signup />} />
+      <Route path="/signup" element={<Signup />} />
       <Route path="/password-reset" element={<Password />} />
       <Route path="/admin/">
         <Route path="dashboard" element={<AdminDashboard />} />
