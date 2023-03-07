@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { ChangeEvent, FC, useState } from "react";
 import { InputFields, StaffFormProps } from "../../types/componentsProps.types";
 import { countryList } from "../../assets/static";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +10,8 @@ import {
 import SelectContainer from "../UI/SelectContainer";
 import { OutlineButton } from "../UI/Buttons";
 import { useNavigate } from "react-router-dom";
+import Input from "../UI/Input";
+
 const personalInformation: InputFields[] = [
   {
     name: "firstname",
@@ -94,15 +96,8 @@ const bankInfo: InputFields[] = [
 export const roles: InputFields[] = [
   {
     name: "position",
-    placeholder: "Position",
-    type: "select",
-    optionsList: ["Logistics Manager", "Teacher", "Store Manager"],
-  },
-  {
-    name: "role",
-    placeholder: "Role",
-    type: "select",
-    optionsList: ["Logistics Manager", "Teacher", "Store Manager"],
+    placeholder: "Position E.g Teacher, Bus Driver",
+    type: "text",
   },
   {
     name: "salary",
@@ -122,10 +117,23 @@ const StaffForm: FC<StaffFormProps> = ({
   onSubmit,
 }) => {
   const navigate = useNavigate();
-  const steps = [firstStepTitle, secondStepTitle];
   const [currentStep, setCurrentStep] = useState<number>(1);
   const addStaffSlice = useSelector((state: RootState) => state.addStaff);
   const dispatch = useDispatch();
+  const editStaffDetails = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(updateStaffDetails({ key: e.target.name, value: e.target.value }));
+  };
+  const getStaffDetails = (name: string) => {
+    return addStaffSlice[name as keyof typeof addStaffSlice] as string;
+  };
+  const editStaffRole = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(updateRoleDetails({ key: e.target.name, value: e.target.value }));
+  };
+  const getStaffRole = (name: string) => {
+    return addStaffSlice.role[
+      name as keyof typeof addStaffSlice.role
+    ] as string;
+  };
   const updateGender = (value: string) => {
     dispatch(updateStaffDetails({ key: "gender", value }));
   };
@@ -136,13 +144,9 @@ const StaffForm: FC<StaffFormProps> = ({
   const updatePosition = (value: string) => {
     dispatch(updateRoleDetails({ key: "position", value }));
   };
-  const updateInputRole = (value: string) => {
-    dispatch(updateRoleDetails({ key: "role", value }));
-  };
 
   const updateSelectOptionsInRoles = {
     position: updatePosition,
-    role: updateInputRole,
   };
 
   return (
@@ -197,42 +201,26 @@ const StaffForm: FC<StaffFormProps> = ({
 
               <div className={styles.gridContainer}>
                 {personalInformation.map((input, index: number) => {
-                  return input.optionsList ? (
-                    <input
-                      key={index}
-                      className="input-field"
+                  return !input.optionsList ? (
+                    <Input
+                      value={getStaffDetails(input.name)}
+                      onChange={editStaffDetails}
                       type={input.type}
-                      placeholder={input.placeholder}
                       name={input.name}
-                      value={
+                      placeholder={input.placeholder}
+                    />
+                  ) : (
+                    <SelectContainer
+                      key={index}
+                      list={input.optionsList}
+                      currentItem={
                         addStaffSlice[
                           input.name as keyof typeof addStaffSlice
                         ] as string
                       }
-                      onChange={(e) => {
-                        dispatch(
-                          updateStaffDetails({
-                            key: input.name,
-                            value: e.target.value as string,
-                          })
-                        );
-                      }}
-                      required
+                      fitContent={true}
+                      updateItem={updateGender}
                     />
-                  ) : (
-                    input.optionsList && (
-                      <SelectContainer
-                        key={index}
-                        list={input.optionsList}
-                        currentItem={
-                          addStaffSlice[
-                            input.name as keyof typeof addStaffSlice
-                          ] as string
-                        }
-                        fitContent={true}
-                        updateItem={updateGender}
-                      />
-                    )
                   );
                 })}
               </div>
@@ -245,37 +233,19 @@ const StaffForm: FC<StaffFormProps> = ({
                   return (
                     <React.Fragment key={index}>
                       {!input.optionsList && input.type !== "file" && (
-                        <input
-                          key={index}
-                          className="input-field"
+                        <Input
                           type={input.type}
+                          value={getStaffDetails(input.name)}
+                          onChange={editStaffDetails}
                           placeholder={input.placeholder}
                           name={input.name}
-                          value={
-                            addStaffSlice[
-                              input.name as keyof typeof addStaffSlice
-                            ] as string
-                          }
-                          onChange={(e) => {
-                            dispatch(
-                              updateStaffDetails({
-                                key: input.name,
-                                value: e.target.value as string,
-                              })
-                            );
-                          }}
-                          required
                         />
                       )}
                       {input.optionsList && (
                         <SelectContainer
                           key={index}
                           list={countryList}
-                          currentItem={
-                            addStaffSlice[
-                              input.name as keyof typeof addStaffSlice
-                            ] as string
-                          }
+                          currentItem={getStaffDetails(input.name)}
                           fitContent={false}
                           updateItem={updateCountry}
                         />
@@ -324,29 +294,14 @@ const StaffForm: FC<StaffFormProps> = ({
               <div className={styles.gridContainer}>
                 {bankInfo.map((input, index: number) => {
                   return (
-                    <>
-                      <input
-                        key={index}
-                        className="input-field"
-                        type={input.type}
-                        placeholder={input.placeholder}
-                        name={input.name}
-                        value={
-                          addStaffSlice[
-                            input.name as keyof typeof addStaffSlice
-                          ] as string
-                        }
-                        required
-                        onChange={(e) => {
-                          dispatch(
-                            updateStaffDetails({
-                              key: input.name,
-                              value: e.target.value as string,
-                            })
-                          );
-                        }}
-                      />
-                    </>
+                    <Input
+                      key={index}
+                      value={getStaffDetails(input.name)}
+                      onChange={editStaffDetails}
+                      type={input.type}
+                      placeholder={input.placeholder}
+                      name={input.name}
+                    />
                   );
                 })}
               </div>
@@ -361,37 +316,19 @@ const StaffForm: FC<StaffFormProps> = ({
                   return (
                     <React.Fragment key={index}>
                       {!input.optionsList && input.type !== "file" && (
-                        <input
-                          key={index}
-                          className="input-field"
+                        <Input
                           type={input.type}
-                          placeholder={input.placeholder}
+                          value={getStaffRole(input.name)}
                           name={input.name}
-                          value={
-                            addStaffSlice.role[
-                              input.name as keyof typeof addStaffSlice.role
-                            ] as string
-                          }
-                          onChange={(e) => {
-                            dispatch(
-                              updateRoleDetails({
-                                key: input.name,
-                                value: e.target.value as string,
-                              })
-                            );
-                          }}
-                          required
+                          onChange={editStaffRole}
+                          placeholder={input.placeholder}
                         />
                       )}
                       {input.optionsList && (
                         <SelectContainer
                           key={index}
                           list={input.optionsList}
-                          currentItem={
-                            addStaffSlice?.role?.[
-                              input.name as keyof typeof addStaffSlice.role
-                            ] as string
-                          }
+                          currentItem={getStaffRole(input.name)}
                           fitContent={false}
                           updateItem={
                             updateSelectOptionsInRoles[

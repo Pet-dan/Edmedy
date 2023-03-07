@@ -1,4 +1,5 @@
 import {
+  bursaryTransactionsProps,
   plansProps,
   StaffEmploymentRecordProps,
   StaffLessonNotesProps,
@@ -356,5 +357,51 @@ export const staffLessonNotes: StaffLessonNotesProps[] = [
     term: "First",
     subject: "Physics",
     completed: false,
+  },
+];
+
+export const recentTransactionsHeaders: tableHeaders[] = [
+  { text: "Date", width: 120 },
+  { text: "Transaction Name", width: 200 },
+  { text: "Recepient", width: 200 },
+  { text: "Amount(NGN)", width: 120 },
+  { text: "Status", width: 160 },
+];
+
+export const bursaryTransactions: bursaryTransactionsProps[] = [
+  {
+    date: "14-08-23",
+    transactionName: "Restocking of sick-bay",
+    recepient: "Alpha-Zeus Pharmacy",
+    amount: 100000,
+    success: false,
+  },
+  {
+    date: "14-08-23",
+    transactionName: "Restocking of sick-bay",
+    recepient: "Alpha-Zeus Pharmacy",
+    amount: 100000,
+    success: false,
+  },
+  {
+    date: "14-08-23",
+    transactionName: "Restocking of sick-bay",
+    recepient: "Alpha-Zeus Pharmacy",
+    amount: 100000,
+    success: true,
+  },
+  {
+    date: "14-08-23",
+    transactionName: "Restocking of sick-bay",
+    recepient: "Alpha-Zeus Pharmacy",
+    amount: 100000,
+    success: false,
+  },
+  {
+    date: "14-08-23",
+    transactionName: "Restocking of sick-bay",
+    recepient: "Alpha-Zeus Pharmacy",
+    amount: 100000,
+    success: true,
   },
 ];

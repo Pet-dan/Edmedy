@@ -49,6 +49,14 @@ export interface ContentBoxWithAvatarProps {
   buttonIcon?: ReactElement;
   buttonLink?: string;
 }
+export interface SmallContentBoxWithAvatarProps {
+  avatar: ReactElement | string;
+  iconColor: string;
+  iconBg: string;
+  title: string;
+  subtitle: string;
+  fullFlex: boolean;
+}
 
 export interface ButtonsType {
   icon?: ReactElement;

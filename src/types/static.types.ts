@@ -54,3 +54,11 @@ export interface StaffLessonNotesProps {
   subject: string;
   completed: boolean;
 }
+
+export interface bursaryTransactionsProps {
+  date: string;
+  transactionName: string;
+  recepient: string;
+  amount: number;
+  success: boolean;
+}

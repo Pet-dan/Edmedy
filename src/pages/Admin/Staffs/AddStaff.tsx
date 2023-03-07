@@ -35,7 +35,7 @@ const AddStaff = () => {
             ></span>
             Individual
           </div>
-          <div
+          {/* <div
             className={styles.radio_container}
             onClick={() => {
               updateSelection("Bulk");
@@ -45,7 +45,7 @@ const AddStaff = () => {
               className={`radio ${selection === "Bulk" && "checked"}`}
             ></span>
             Bulk
-          </div>
+          </div> */}
         </header>
         <StaffForm
           firstStepTitle="Profile Set-Up"

@@ -2,6 +2,7 @@ import React, { FC, ReactElement } from "react";
 import {
   ContentBoxProps,
   ContentBoxWithAvatarProps,
+  SmallContentBoxWithAvatarProps,
 } from "../../types/componentsProps.types";
 import { ButtonFilled, OutlineButton } from "./Buttons";
 
@@ -54,5 +55,36 @@ export const ContentBoxWithAvatarHeader: FC<ContentBoxWithAvatarProps> = ({
         </div>
       )}
     </header>
+  );
+};
+
+export const SmallContentBoxWIthAvatar: FC<SmallContentBoxWithAvatarProps> = ({
+  avatar,
+  iconBg,
+  iconColor,
+  title,
+  subtitle,
+  fullFlex,
+}) => {
+  return (
+    <article
+      className={
+        "p-3 border-[1.5px] flex items-center gap-x-4 rounded-md min-w-[200px] flex-1"
+      }
+      style={{ flex: fullFlex ? 1 : 0 }}
+    >
+      <span
+        className={
+          "w-[40px] h-[40px] text-[18px] font-lighter flex justify-center items-center rounded-full "
+        }
+        style={{ background: iconBg, color: iconColor }}
+      >
+        {avatar}
+      </span>
+      <div>
+        <p className="text-darkGray font-bold text-[1rem]">{title}</p>
+        <h2 className="text-[1.1rem] font-bold">{subtitle}</h2>
+      </div>
+    </article>
   );
 };

@@ -35,7 +35,7 @@ const EditStaff = () => {
             ></span>
             Individual
           </div>
-          <div
+          {/* <div
             className={styles.radio_container}
             onClick={() => {
               updateSelection("Bulk");
@@ -45,7 +45,7 @@ const EditStaff = () => {
               className={`radio ${selection === "Bulk" && "checked"}`}
             ></span>
             Bulk
-          </div>
+          </div> */}
         </header>
         <StaffForm
           firstStepTitle="Edit Staff Profile"

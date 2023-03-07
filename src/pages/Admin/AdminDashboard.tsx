@@ -1,6 +1,9 @@
 import React from "react";
 import { FaUser, FaUsers } from "react-icons/fa";
-import { ContentBox } from "../../components/UI/ContentBox";
+import {
+  ContentBox,
+  SmallContentBoxWIthAvatar,
+} from "../../components/UI/ContentBox";
 import DashboardLayout from "../../components/DashboardLayout";
 import ProgressBar from "../../components/ProgressBar";
 import {
@@ -52,30 +55,22 @@ const AdminDashboard = () => {
         <div className={styles.main_container}>
           {/* staffs and students details */}
           <div className={styles.flex_containers}>
-            <article className={styles.staffs_and_students}>
-              <span
-                className={styles.staffs_and_students_icon + "bg-[#5151f536]"}
-              >
-                <FaUser className="text-[royalblue]" />
-              </span>
-              <div>
-                <p className="text-darkGray font-bold text-[1rem]">
-                  Staff Members
-                </p>
-                <h2 className="text-[1.1rem] font-bold">24</h2>
-              </div>
-            </article>
-            <article className={styles.staffs_and_students}>
-              <span
-                className={styles.staffs_and_students_icon + "bg-[#51f55f36]"}
-              >
-                <FaUsers className="text-[#136837]" />
-              </span>
-              <div>
-                <p className="text-darkGray font-bold text-[1rem]">Students</p>
-                <h2 className="text-[1.1rem] font-bold">240</h2>
-              </div>
-            </article>
+            <SmallContentBoxWIthAvatar
+              iconBg="#5151f536"
+              iconColor="royalblue"
+              title="Staff Members"
+              subtitle="24"
+              avatar={<FaUser />}
+              fullFlex={false}
+            />
+            <SmallContentBoxWIthAvatar
+              title="Students"
+              subtitle="240"
+              iconBg="#51f55f36"
+              iconColor="#136837"
+              fullFlex={false}
+              avatar={<FaUsers />}
+            />
           </div>
 
           {/* attendance containers */}
@@ -203,10 +198,6 @@ const AdminDashboard = () => {
 const styles = {
   main_container:
     "w-full min-h-screen shadow-xl bg-white rounded-md p-4 md:p-8",
-  staffs_and_students:
-    "p-3 border-[1.5px] flex items-center gap-x-4 rounded-md min-w-[200px]",
-  staffs_and_students_icon:
-    "w-[40px] h-[40px] text-[18px] font-lighter flex justify-center items-center rounded-full ",
   flex_containers:
     "flex items-center justify-center md:justify-start gap-6 flex-wrap w-full",
   header: "flex justify-between items-center gap-4 px-6 flex-wrap",
