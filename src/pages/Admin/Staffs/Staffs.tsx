@@ -35,7 +35,9 @@ const Staffs = () => {
             {/* filter button */}
             <OutlineButton icon={<RiMenu2Line />} text={"Filter"} />
 
-            <ButtonFilled icon={<BiPlus />} text={"Add Staff Members"} />
+            <Link to={"/admin/staffs/new"} className="min-w-fit">
+              <ButtonFilled icon={<BiPlus />} text={"Add Staff Members"} />
+            </Link>
           </div>
         </header>
         {staffsList.length > 0 && (

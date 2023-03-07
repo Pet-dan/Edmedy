@@ -134,7 +134,7 @@ const Step5: FC<StepProps> = ({ increaseStep }) => {
                         }}
                       />
                       {field.name === "confirm_password" &&
-                        field.value.toString().length > 0 &&
+                        singleAdmin?.confirm_password?.length > 0 &&
                         singleAdmin.password !==
                           singleAdmin.confirm_password && (
                           <p className="font-bold text-[15px] text-red-600">

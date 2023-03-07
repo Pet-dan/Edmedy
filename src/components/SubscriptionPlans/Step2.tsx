@@ -88,7 +88,7 @@ const Step2: FC<StepProps> = ({ increaseStep }) => {
                   }}
                 />
                 {field.name === "confirm_password" &&
-                  field.value.toString().length > 0 &&
+                  adminDetails?.confirm_password.length > 0 &&
                   adminDetails.password !== adminDetails.confirm_password && (
                     <p className="font-bold text-[15px] text-red-600 mt-1">
                       Passwords do not match

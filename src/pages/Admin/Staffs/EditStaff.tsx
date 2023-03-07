@@ -4,7 +4,7 @@ import StaffForm from "../../../components/Admin/StaffForm";
 import DashboardLayout from "../../../components/DashboardLayout";
 import { InputFields } from "../../../types/componentsProps.types";
 
-const AddStaff = () => {
+const EditStaff = () => {
   const [selection, setSelection] = useState<"Bulk" | "Individual">(
     "Individual"
   );
@@ -17,7 +17,7 @@ const AddStaff = () => {
       pageTitle={
         <>
           Staff Memebers/
-          <span className="text-blackText font-bold">Add Staff</span>
+          <span className="text-blackText font-bold">Edit Staff Profile</span>
         </>
       }
       documentTitle={"Add Staff"}
@@ -48,8 +48,8 @@ const AddStaff = () => {
           </div>
         </header>
         <StaffForm
-          firstStepTitle="Profile Set-Up"
-          secondStepTitle="Role Details"
+          firstStepTitle="Edit Staff Profile"
+          secondStepTitle="Edit Staff Profile"
         />
       </section>
     </DashboardLayout>
@@ -61,4 +61,4 @@ const styles = {
     "flex items-center gap-x-2 flex-nowrap text-[20px] text-blackText font-bold cursor-pointer",
 };
 
-export default AddStaff;
+export default EditStaff;
