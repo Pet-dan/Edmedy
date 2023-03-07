@@ -7,6 +7,7 @@ import {
   InputFields,
   paymentDetailsProps,
 } from "../../types/componentsProps.types";
+import SelectContainer from "../UI/SelectContainer";
 
 const Step3: FC<StepProps> = ({ increaseStep }) => {
   const [details, setDetails] = useState<paymentDetailsProps>({
@@ -16,6 +17,9 @@ const Step3: FC<StepProps> = ({ increaseStep }) => {
     zipCode: "",
     city: "",
     address: "",
+    bankName: "",
+    accountName: "",
+    accountNumber: "",
   });
   const [countrySelectorOpen, setCountrySelectorOpen] =
     useState<boolean>(false);
@@ -24,6 +28,10 @@ const Step3: FC<StepProps> = ({ increaseStep }) => {
     setDetails(() => {
       return { ...details, [key as keyof paymentDetailsProps]: value };
     });
+  };
+
+  const updateCountry = (value: string) => {
+    updatePaymentDetails("country", value);
   };
 
   const toggleCountrySelector = () => {
@@ -75,6 +83,27 @@ const Step3: FC<StepProps> = ({ increaseStep }) => {
       type: "text",
       value: details.address,
       label: "Address Line",
+    },
+    {
+      placeholder: "Enter Bank Name",
+      name: "bankName",
+      type: "text",
+      value: details.bankName,
+      label: "Bank Name",
+    },
+    {
+      placeholder: "Enter Account Name",
+      name: "accountName",
+      type: "text",
+      value: details.accountName,
+      label: "Acount Name",
+    },
+    {
+      placeholder: "Enter Account Number",
+      name: "accountNumber",
+      type: "number",
+      value: details.accountNumber,
+      label: "Account Number",
     },
   ];
 
@@ -131,41 +160,12 @@ const Step3: FC<StepProps> = ({ increaseStep }) => {
                   >
                     {input.label}
                   </label>
-                  <div className={`w-full relative`}>
-                    <header
-                      className={`w-full cursor-pointer border-[1.5px] flex justify-between items-center gap-x-4 p-3 rounded-md bg-white ${
-                        countrySelectorOpen && "border-black"
-                      }`}
-                      onClick={toggleCountrySelector}
-                    >
-                      <p>{input.value}</p>
-                      <span>
-                        {countrySelectorOpen ? (
-                          <BiChevronUp />
-                        ) : (
-                          <BiChevronDown />
-                        )}
-                      </span>
-                    </header>
-                    {countrySelectorOpen && (
-                      <div className="absolute top-[115%] shadow-md left-0 w-full max-h-[300px] overflow-hidden overflow-y-scroll rounded-md z-[5] bg-white">
-                        {countryList.map((country, index) => {
-                          return (
-                            <p
-                              key={index}
-                              className="p-3 text-darkGray hover:text-black w-full cursor-pointer"
-                              onClick={() => {
-                                updatePaymentDetails("country", country);
-                                closeCountrySelector();
-                              }}
-                            >
-                              {country}
-                            </p>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </div>
+                  <SelectContainer
+                    list={countryList}
+                    currentItem={input.value as string}
+                    fitContent={false}
+                    updateItem={updateCountry}
+                  />
                 </>
               )}
             </div>

@@ -12,13 +12,17 @@ export interface paymentDetailsProps {
   zipCode: number | "";
   city: string;
   address: string;
+  bankName: string;
+  accountName: string;
+  accountNumber: string | number;
 }
 export interface InputFields {
   placeholder: string;
   name: string;
-  value: string | number;
+  value?: string | number;
   type: string;
-  label: string;
+  label?: string;
+  optionsList?: string[];
 }
 
 export interface MobileSidebarProps {
@@ -49,4 +53,10 @@ export interface ContentBoxWithAvatarProps {
 export interface ButtonsType {
   icon?: ReactElement;
   text: string;
+}
+
+export interface StaffFormProps {
+  firstStepTitle: string;
+  secondStepTitle: string;
+  onSubmit?: () => void;
 }

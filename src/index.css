@@ -56,6 +56,14 @@
   @apply w-full outline-none bg-white border-[1.5px] focus:border-black rounded-md text-black placeholder:text-darkGray px-3 py-2;
 }
 
+.radio {
+  @apply w-[20px] h-[20px] border-2 border-black rounded-full flex justify-center items-center relative after:absolute after:top-[50%] after:left-[50%] after:-translate-x-[50%] after:-translate-y-[50%] after:z-[3] after:w-[10px] after:h-[10px] after:bg-white after:rounded-full;
+}
+
+.radio.checked {
+  @apply after:bg-black;
+}
+
 /* svgs for progress container */
 
 svg.progress-bar {

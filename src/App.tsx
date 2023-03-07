@@ -15,6 +15,8 @@ import AdminCalendar from "./pages/Admin/AdminCalendar";
 import AdminSettings from "./pages/Admin/AdminSettings";
 import Sickbay from "./pages/Admin/Sickbay";
 import Staffs from "./pages/Admin/Staffs/Staffs";
+import AddStaff from "./pages/Admin/Staffs/AddStaff";
+import EditStaff from "./pages/Admin/Staffs/EditStaff";
 import AdminStore from "./pages/Admin/AdminStore";
 import Students from "./pages/Admin/Students";
 import SubscriptionPlans from "./pages/SubscriptionPlans";
@@ -61,6 +63,8 @@ function App() {
         <Route path="staffs/">
           <Route index element={<Staffs />} />
           <Route path=":id" element={<SingleStaff />} />
+          <Route path="new" element={<AddStaff />} />
+          <Route path="edit/:id" element={<EditStaff />} />
         </Route>
         <Route path="students" element={<Students />} />
         <Route path="calendar" element={<AdminCalendar />} />
