@@ -4,6 +4,7 @@ import { countryList } from "../../assets/static";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import {
+  updateNextOfKinDetails,
   updateRoleDetails,
   updateStaffDetails,
 } from "../../store/slices/post/addStaffMemberSlice";
@@ -11,105 +12,6 @@ import SelectContainer from "../UI/SelectContainer";
 import { OutlineButton } from "../UI/Buttons";
 import { useNavigate } from "react-router-dom";
 import Input from "../UI/Input";
-
-const personalInformation: InputFields[] = [
-  {
-    name: "firstname",
-    placeholder: "First Name",
-    type: "text",
-  },
-  {
-    name: "lastname",
-    placeholder: "Last Name",
-    type: "text",
-  },
-  {
-    name: "dob",
-    placeholder: "Date of birth (DD-MM-YYYY)",
-    type: "text",
-  },
-  {
-    name: "gender",
-    placeholder: "Gender",
-    type: "select",
-    optionsList: ["Male", "Female"],
-  },
-];
-
-const contactInfo: InputFields[] = [
-  {
-    name: "email",
-    placeholder: "Email Address",
-    type: "email",
-  },
-  {
-    name: "phoneNumber",
-    placeholder: "Phone Number",
-    type: "number",
-  },
-  {
-    name: "country",
-    placeholder: "Country",
-    type: "select",
-    optionsList: countryList,
-  },
-  {
-    name: "state",
-    placeholder: "State",
-    type: "text",
-  },
-  {
-    name: "city",
-    placeholder: "City",
-    type: "text",
-  },
-  {
-    name: "address",
-    placeholder: "Address",
-    type: "text",
-  },
-  {
-    name: "passport",
-    placeholder: "Upload Passport",
-    type: "file",
-  },
-];
-
-const bankInfo: InputFields[] = [
-  {
-    name: "bankName",
-    placeholder: "Bank Name",
-    type: "text",
-  },
-  {
-    name: "accountName",
-    placeholder: "Account Name",
-    type: "text",
-  },
-  {
-    name: "accountNumber",
-    placeholder: "Account Number",
-    type: "number",
-  },
-];
-
-export const roles: InputFields[] = [
-  {
-    name: "position",
-    placeholder: "Position E.g Teacher, Bus Driver",
-    type: "text",
-  },
-  {
-    name: "salary",
-    placeholder: "Salary",
-    type: "number",
-  },
-  {
-    name: "signature",
-    placeholder: "Upload Signature",
-    type: "file",
-  },
-];
 
 const StaffForm: FC<StaffFormProps> = ({
   firstStepTitle,
@@ -123,16 +25,8 @@ const StaffForm: FC<StaffFormProps> = ({
   const editStaffDetails = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(updateStaffDetails({ key: e.target.name, value: e.target.value }));
   };
-  const getStaffDetails = (name: string) => {
-    return addStaffSlice[name as keyof typeof addStaffSlice] as string;
-  };
   const editStaffRole = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(updateRoleDetails({ key: e.target.name, value: e.target.value }));
-  };
-  const getStaffRole = (name: string) => {
-    return addStaffSlice.role[
-      name as keyof typeof addStaffSlice.role
-    ] as string;
   };
   const updateGender = (value: string) => {
     dispatch(updateStaffDetails({ key: "gender", value }));
@@ -144,13 +38,17 @@ const StaffForm: FC<StaffFormProps> = ({
   const updatePosition = (value: string) => {
     dispatch(updateRoleDetails({ key: "position", value }));
   };
-
-  const updateSelectOptionsInRoles = {
-    position: updatePosition,
+  const updateClass = (value: string) => {
+    dispatch(updateRoleDetails({ key: "class", value }));
+  };
+  const editNextOfKinDetails = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(
+      updateNextOfKinDetails({ key: e.target.name, value: e.target.value })
+    );
   };
 
   return (
-    <section className="w-full mt-8">
+    <section className="w-full mt-8 pb-8">
       <div className="w-full flex justify-between items-center gap-4 flex-wrap">
         <div>
           <h1 className="font-bold text-[20px] mb-1 text-blackText">
@@ -200,91 +98,106 @@ const StaffForm: FC<StaffFormProps> = ({
               <h1 className={styles.formSectionTitle}>Personal Information</h1>
 
               <div className={styles.gridContainer}>
-                {personalInformation.map((input, index: number) => {
-                  return !input.optionsList ? (
-                    <Input
-                      value={getStaffDetails(input.name)}
-                      onChange={editStaffDetails}
-                      type={input.type}
-                      name={input.name}
-                      placeholder={input.placeholder}
-                    />
-                  ) : (
-                    <SelectContainer
-                      key={index}
-                      list={input.optionsList}
-                      currentItem={
-                        addStaffSlice[
-                          input.name as keyof typeof addStaffSlice
-                        ] as string
-                      }
-                      fitContent={true}
-                      updateItem={updateGender}
-                    />
-                  );
-                })}
+                <Input
+                  value={addStaffSlice.firstname}
+                  onChange={editStaffDetails}
+                  type={"text"}
+                  name={"firstname"}
+                  placeholder={"First Name"}
+                />
+                <Input
+                  value={addStaffSlice.lastname}
+                  onChange={editStaffDetails}
+                  type={"text"}
+                  name={"lastname"}
+                  placeholder={"Last Name"}
+                />
+                <Input
+                  value={addStaffSlice.dob}
+                  onChange={editStaffDetails}
+                  type={"text"}
+                  name={"dob"}
+                  placeholder={"Date of birth (DD-MM-YYYY)"}
+                />
+
+                <SelectContainer
+                  list={["Male", "Female"]}
+                  currentItem={addStaffSlice.gender}
+                  fitContent={true}
+                  updateItem={updateGender}
+                />
               </div>
             </article>
             <article className="px-6">
               <h1 className={styles.formSectionTitle}>Contact Information</h1>
 
               <div className={styles.gridContainer}>
-                {contactInfo.map((input, index: number) => {
-                  return (
-                    <React.Fragment key={index}>
-                      {!input.optionsList && input.type !== "file" && (
-                        <Input
-                          type={input.type}
-                          value={getStaffDetails(input.name)}
-                          onChange={editStaffDetails}
-                          placeholder={input.placeholder}
-                          name={input.name}
-                        />
-                      )}
-                      {input.optionsList && (
-                        <SelectContainer
-                          key={index}
-                          list={countryList}
-                          currentItem={getStaffDetails(input.name)}
-                          fitContent={false}
-                          updateItem={updateCountry}
-                        />
-                      )}
-                      {input.type === "file" && (
-                        <>
-                          <label htmlFor="file" className="input-field">
-                            {addStaffSlice?.passport
-                              ? (addStaffSlice.passport as File)?.name?.length >
-                                30
-                                ? (addStaffSlice.passport as File)?.name?.slice(
-                                    0,
-                                    30
-                                  ) + "..."
-                                : (addStaffSlice.passport as File)?.name
-                              : "Upload Passport"}
-                          </label>
-                          <input
-                            type="file"
-                            className="hidden"
-                            id="file"
-                            onChange={(e) => {
-                              const file = e?.target?.files?.[0];
-                              console.log(file?.type.includes("image"));
-                              if (file?.type.includes("image")) {
-                                dispatch(
-                                  updateStaffDetails({
-                                    key: input.name,
-                                    value: file,
-                                  })
-                                );
-                              }
-                            }}
-                          />
-                        </>
-                      )}
-                    </React.Fragment>
-                  );
-                })}
+                <Input
+                  type={"email"}
+                  value={addStaffSlice.email}
+                  onChange={editStaffDetails}
+                  placeholder={"Email Address"}
+                  name={"email"}
+                />
+                <Input
+                  type={"number"}
+                  value={addStaffSlice.phoneNumber}
+                  onChange={editStaffDetails}
+                  placeholder={"Phone Number"}
+                  name={"phoneNumber"}
+                />
+                <SelectContainer
+                  list={countryList}
+                  fitContent={false}
+                  currentItem={addStaffSlice.country}
+                  updateItem={updateCountry}
+                />
+                <Input
+                  type={"text"}
+                  value={addStaffSlice.state}
+                  onChange={editStaffDetails}
+                  placeholder={"State"}
+                  name={"state"}
+                />
+                <Input
+                  type={"text"}
+                  value={addStaffSlice.city}
+                  onChange={editStaffDetails}
+                  placeholder={"City"}
+                  name={"city"}
+                />
+                <Input
+                  type={"text"}
+                  value={addStaffSlice.address}
+                  onChange={editStaffDetails}
+                  placeholder={"Address"}
+                  name={"address"}
+                />
+                <label htmlFor="file" className="input-field">
+                  {addStaffSlice?.picture
+                    ? (addStaffSlice.picture as File)?.name?.length > 30
+                      ? (addStaffSlice.picture as File)?.name?.slice(0, 30) +
+                        "..."
+                      : (addStaffSlice.picture as File)?.name
+                    : "Upload Picture"}
+                </label>
+                <input
+                  type="file"
+                  className="hidden"
+                  id="file"
+                  onChange={(e) => {
+                    const file = e?.target?.files?.[0];
+
+                    if (file?.type.includes("image")) {
+                      dispatch(
+                        updateStaffDetails({
+                          key: "picture",
+                          value: file,
+                        })
+                      );
+                    }
+                  }}
+                />
               </div>
             </article>
 
@@ -292,18 +205,72 @@ const StaffForm: FC<StaffFormProps> = ({
               <h1 className={styles.formSectionTitle}>Bank Information</h1>
 
               <div className={styles.gridContainer}>
-                {bankInfo.map((input, index: number) => {
-                  return (
-                    <Input
-                      key={index}
-                      value={getStaffDetails(input.name)}
-                      onChange={editStaffDetails}
-                      type={input.type}
-                      placeholder={input.placeholder}
-                      name={input.name}
-                    />
-                  );
-                })}
+                <Input
+                  type={"text"}
+                  value={addStaffSlice.bankName}
+                  name={"bankName"}
+                  onChange={editStaffDetails}
+                  placeholder={"Bank Name"}
+                />
+                <Input
+                  type={"text"}
+                  value={addStaffSlice.accountName}
+                  name={"accountName"}
+                  onChange={editStaffDetails}
+                  placeholder={"Account Name"}
+                />
+
+                <Input
+                  type={"number"}
+                  value={addStaffSlice.accountNumber}
+                  name={"accountNumber"}
+                  onChange={editStaffDetails}
+                  placeholder={"Account Number"}
+                />
+              </div>
+            </article>
+
+            <article className="px-6">
+              <h1 className={styles.formSectionTitle}>
+                Next Of Kin information
+              </h1>
+
+              <div className={styles.gridContainer}>
+                <Input
+                  type="text"
+                  name="name"
+                  value={addStaffSlice.nextOfKin.name}
+                  placeholder="Enter Name"
+                  onChange={editNextOfKinDetails}
+                />
+                <Input
+                  type="email"
+                  name="email"
+                  value={addStaffSlice.nextOfKin.email}
+                  placeholder="Enter Email"
+                  onChange={editNextOfKinDetails}
+                />
+                <Input
+                  type="dob"
+                  name="dob"
+                  value={addStaffSlice.nextOfKin.dob}
+                  placeholder="Date of Birth (DD-MM-YYYY)"
+                  onChange={editNextOfKinDetails}
+                />
+                <Input
+                  type="number"
+                  name="phoneNumber"
+                  value={addStaffSlice.nextOfKin.phoneNumber}
+                  placeholder="Enter Phone Number"
+                  onChange={editNextOfKinDetails}
+                />
+                <Input
+                  type="text"
+                  name="address"
+                  value={addStaffSlice.nextOfKin.address}
+                  placeholder="Enter Address"
+                  onChange={editNextOfKinDetails}
+                />
               </div>
             </article>
           </div>
@@ -312,65 +279,104 @@ const StaffForm: FC<StaffFormProps> = ({
           <div className="w-full max-w-[800px] mx-auto">
             <article className="px-6">
               <div className={styles.gridContainer}>
-                {roles.map((input, index: number) => {
-                  return (
-                    <React.Fragment key={index}>
-                      {!input.optionsList && input.type !== "file" && (
-                        <Input
-                          type={input.type}
-                          value={getStaffRole(input.name)}
-                          name={input.name}
-                          onChange={editStaffRole}
-                          placeholder={input.placeholder}
-                        />
-                      )}
-                      {input.optionsList && (
-                        <SelectContainer
-                          key={index}
-                          list={input.optionsList}
-                          currentItem={getStaffRole(input.name)}
-                          fitContent={false}
-                          updateItem={
-                            updateSelectOptionsInRoles[
-                              input.name as keyof typeof updateSelectOptionsInRoles
-                            ]
-                          }
-                        />
-                      )}
-                      {input.type === "file" && (
-                        <>
-                          <label htmlFor="file" className="input-field">
-                            {addStaffSlice?.role?.signature
-                              ? (addStaffSlice.role?.signature as File)?.name
-                                  ?.length > 30
-                                ? (
-                                    addStaffSlice.role?.signature as File
-                                  )?.name?.slice(0, 30) + "..."
-                                : (addStaffSlice.role?.signature as File)?.name
-                              : "Upload Passport"}
-                          </label>
-                          <input
-                            type="file"
-                            className="hidden"
-                            id="file"
-                            onChange={(e) => {
-                              const file = e?.target?.files?.[0];
-                              console.log(file?.type.includes("image"));
-                              if (file?.type.includes("image")) {
-                                dispatch(
-                                  updateRoleDetails({
-                                    key: input.name,
-                                    value: file,
-                                  })
-                                );
-                              }
-                            }}
-                          />
-                        </>
-                      )}
-                    </React.Fragment>
-                  );
-                })}
+                <SelectContainer
+                  list={[
+                    "Teacher",
+                    "Cleaner",
+                    "Bus Driver",
+                    "Security",
+                    "Bursar",
+                    "Nurse",
+                    "Chef",
+                    "Bus Assistant",
+                    "Nanny",
+                    "Gardener",
+                    "Others",
+                  ]}
+                  currentItem={addStaffSlice.role.position}
+                  fitContent={false}
+                  updateItem={updatePosition}
+                />
+                {addStaffSlice.role.position === "Others" && (
+                  <Input
+                    type="text"
+                    value={addStaffSlice.role.otherPosition}
+                    name="otherPosition"
+                    placeholder="Kindly specify the position"
+                    onChange={editStaffRole}
+                  />
+                )}
+                {addStaffSlice.role.position === "Teacher" && (
+                  <SelectContainer
+                    list={[
+                      "JSS 1",
+                      "JSS 2",
+                      "JSS 3",
+                      "SS 1",
+                      "SS 2",
+                      "SS 3",
+                      "Others",
+                    ]}
+                    currentItem={addStaffSlice.role.class}
+                    updateItem={updateClass}
+                    fitContent={false}
+                  />
+                )}
+                {addStaffSlice.role.position === "Teacher" &&
+                  addStaffSlice.role.class === "Others" && (
+                    <Input
+                      type="text"
+                      placeholder="Kindly Specify Class"
+                      value={addStaffSlice.role.otherClass}
+                      name="otherClass"
+                      onChange={editStaffRole}
+                    />
+                  )}
+                {addStaffSlice.role.position === "Teacher" && (
+                  <Input
+                    type="text"
+                    placeholder="Subjects (Seperate with commas e.g Yoruba, English)"
+                    value={addStaffSlice.role.subject}
+                    name="subject"
+                    onChange={editStaffRole}
+                  />
+                )}
+                <Input
+                  type={"number"}
+                  value={addStaffSlice.role.salary}
+                  name={"salary"}
+                  onChange={editStaffRole}
+                  placeholder={"Salary"}
+                />
+                <>
+                  <label htmlFor="file" className="input-field">
+                    {addStaffSlice?.role?.signature
+                      ? (addStaffSlice.role?.signature as File)?.name?.length >
+                        30
+                        ? (addStaffSlice.role?.signature as File)?.name?.slice(
+                            0,
+                            30
+                          ) + "..."
+                        : (addStaffSlice.role?.signature as File)?.name
+                      : "Upload Signature"}
+                  </label>
+                  <input
+                    type="file"
+                    className="hidden"
+                    id="file"
+                    onChange={(e) => {
+                      const file = e?.target?.files?.[0];
+                      if (file?.type.includes("image")) {
+                        dispatch(
+                          updateRoleDetails({
+                            key: "signature",
+                            value: file,
+                          })
+                        );
+                      }
+                    }}
+                  />
+                </>
               </div>
             </article>
           </div>

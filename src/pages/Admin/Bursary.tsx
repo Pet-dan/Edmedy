@@ -26,18 +26,27 @@ const Bursary = () => {
         <div className={styles.flex_containers}>
           <SmallContentBoxWIthAvatar
             avatar={"₦"}
-            title={"Total Amount"}
-            subtitle={"2,000,000"}
+            title={"Expected Amount"}
+            subtitle={"3,000,000"}
             iconBg={"#5151f536"}
             iconColor={"royalblue"}
             fullFlex={true}
           />
           <SmallContentBoxWIthAvatar
             avatar={"₦"}
-            title={"Expected Amount"}
-            subtitle={"3,000,000"}
+            title={"Sum Total"}
+            subtitle={"2,000,000"}
             iconBg={"#51f55f36"}
             iconColor={"#136837"}
+            fullFlex={true}
+          />
+
+          <SmallContentBoxWIthAvatar
+            avatar={"₦"}
+            title={"Current Total"}
+            subtitle={"1,000,000"}
+            iconBg={"#14141436"}
+            iconColor={"#242424"}
             fullFlex={true}
           />
           <SmallContentBoxWIthAvatar
@@ -59,10 +68,10 @@ const Bursary = () => {
               <BiUser />
               Staff Salary
             </div> */}
-            <div className={styles.bursary_icons}>
+            {/* <div className={styles.bursary_icons}>
               <FaExchangeAlt />
               Petty Cash
-            </div>
+            </div> */}
             <div className={styles.bursary_icons}>
               <GiBank />
               In-Flow

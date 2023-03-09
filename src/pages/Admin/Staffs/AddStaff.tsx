@@ -23,7 +23,7 @@ const AddStaff = () => {
       documentTitle={"Add Staff"}
     >
       <section>
-        <header className="w-full flex items-center gap-4 justify-start flex-wrap">
+        {/* <header className="w-full flex items-center gap-4 justify-start flex-wrap">
           <div
             className={styles.radio_container}
             onClick={() => {
@@ -35,7 +35,7 @@ const AddStaff = () => {
             ></span>
             Individual
           </div>
-          {/* <div
+          <div
             className={styles.radio_container}
             onClick={() => {
               updateSelection("Bulk");
@@ -45,8 +45,8 @@ const AddStaff = () => {
               className={`radio ${selection === "Bulk" && "checked"}`}
             ></span>
             Bulk
-          </div> */}
-        </header>
+          </div>
+        </header> */}
         <StaffForm
           firstStepTitle="Profile Set-Up"
           secondStepTitle="Role Details"

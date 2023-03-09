@@ -13,15 +13,25 @@ const initialState: IAddStaffSlice = {
   state: "",
   city: "",
   address: "",
-  passport: "",
+  picture: "",
   bankName: "",
   accountName: "",
   accountNumber: "",
   role: {
     position: "Position",
-    role: "Role",
+    otherPosition: "",
+    class: "Class",
+    otherClass: "",
+    subject: "",
     salary: "",
     signature: "",
+  },
+  nextOfKin: {
+    name: "",
+    email: "",
+    dob: "",
+    phoneNumber: "",
+    address: "",
   },
 };
 
@@ -54,8 +64,16 @@ const addStaffSlice = createSlice({
       state.role[action.payload.key as keyof typeof state.role] =
         action.payload.value;
     },
+    updateNextOfKinDetails: (
+      state: IAddStaffSlice,
+      action: PayloadAction<{ key: string; value: string }>
+    ) => {
+      state.nextOfKin[action.payload.key as keyof typeof state.nextOfKin] =
+        action.payload.value;
+    },
   },
 });
 
-export const { updateStaffDetails, updateRoleDetails } = addStaffSlice.actions;
+export const { updateStaffDetails, updateRoleDetails, updateNextOfKinDetails } =
+  addStaffSlice.actions;
 export const addStaffReducer = addStaffSlice.reducer;

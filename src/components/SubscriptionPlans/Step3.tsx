@@ -8,6 +8,7 @@ import {
   paymentDetailsProps,
 } from "../../types/componentsProps.types";
 import SelectContainer from "../UI/SelectContainer";
+import Input from "../UI/Input";
 
 const Step3: FC<StepProps> = ({ increaseStep }) => {
   const [details, setDetails] = useState<paymentDetailsProps>({
@@ -24,21 +25,14 @@ const Step3: FC<StepProps> = ({ increaseStep }) => {
   const [countrySelectorOpen, setCountrySelectorOpen] =
     useState<boolean>(false);
 
-  const updatePaymentDetails = (key: string, value: string | number) => {
+  const updatePaymentDetails = (e: ChangeEvent<HTMLInputElement>) => {
     setDetails(() => {
-      return { ...details, [key as keyof paymentDetailsProps]: value };
+      return { ...details, [e.target.name]: e.target.value };
     });
   };
 
   const updateCountry = (value: string) => {
-    updatePaymentDetails("country", value);
-  };
-
-  const toggleCountrySelector = () => {
-    setCountrySelectorOpen((prev: boolean) => !prev);
-  };
-  const closeCountrySelector = () => {
-    setCountrySelectorOpen(false);
+    setDetails(() => ({ ...details, country: value }));
   };
 
   const inputFields: InputFields[] = [
@@ -82,8 +76,11 @@ const Step3: FC<StepProps> = ({ increaseStep }) => {
       name: "address",
       type: "text",
       value: details.address,
-      label: "Address Line",
+      label: "School Address",
     },
+  ];
+
+  const schoolBankDetails: InputFields[] = [
     {
       placeholder: "Enter Bank Name",
       name: "bankName",
@@ -106,7 +103,6 @@ const Step3: FC<StepProps> = ({ increaseStep }) => {
       label: "Account Number",
     },
   ];
-
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     increaseStep();
@@ -115,9 +111,9 @@ const Step3: FC<StepProps> = ({ increaseStep }) => {
   return (
     <>
       <header className="text-darkGray text-center">
-        <h1 className="text-[27px] font-bold mb-2">Payment</h1>
+        <h1 className="text-[27px] font-bold mb-2">School Details</h1>
         <p className="text-[16px] font-[500]">
-          Make payment for your chosen plan{" "}
+          Add School Details{" "}
           <span className="font-bold text-black">{"[Ultimate]"}</span>
         </p>
         <div className="my-4 w-full relative after:absolute after:top-[50%] after:-translate-y-[50%] after:right-0 after:bg-lightGray after:h-[2px] after:sm:w-[30%] after:w-[22%]  before:absolute before:top-[50%] before:-translate-y-[50%] before:left-0 before:bg-lightGray before:h-[2px] before:sm:w-[30%] before:w-[22%] font-bold max-w-[600px] mx-auto">
@@ -139,16 +135,12 @@ const Step3: FC<StepProps> = ({ increaseStep }) => {
                   >
                     {input.label}
                   </label>
-                  <input
-                    className="input-field"
+                  <Input
                     placeholder={input.placeholder}
-                    id={input.name}
                     type={input.type}
                     name={input.name}
                     value={input.value}
-                    onChange={(e) => {
-                      updatePaymentDetails(e.target.name, e.target.value);
-                    }}
+                    onChange={updatePaymentDetails}
                   />
                 </>
               )}
@@ -168,6 +160,29 @@ const Step3: FC<StepProps> = ({ increaseStep }) => {
                   />
                 </>
               )}
+            </div>
+          );
+        })}
+        <h2 className="my-3 font-bold text-darkerGray text-center">
+          Add the account details school fees and other payments would be paid
+          into
+        </h2>
+        {schoolBankDetails.map((input, index: number) => {
+          return (
+            <div className="w-full mb-4" key={index}>
+              <label
+                htmlFor={input.name}
+                className="text-[17px] font-bold mb-2 block cursor-pointer"
+              >
+                {input.label}
+              </label>
+              <Input
+                placeholder={input.placeholder}
+                type={input.type}
+                name={input.name}
+                value={input.value}
+                onChange={updatePaymentDetails}
+              />
             </div>
           );
         })}

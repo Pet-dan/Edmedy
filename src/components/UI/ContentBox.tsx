@@ -68,9 +68,9 @@ export const SmallContentBoxWIthAvatar: FC<SmallContentBoxWithAvatarProps> = ({
 }) => {
   return (
     <article
-      className={
-        "p-3 border-[1.5px] flex items-center gap-x-4 rounded-md min-w-[200px] flex-1"
-      }
+      className={`p-3 border-[1.5px] flex items-center gap-x-4 rounded-md min-w-[200px] flex-1 ${
+        fullFlex && "max-w-fit"
+      }`}
       style={{ flex: fullFlex ? 1 : 0 }}
     >
       <span

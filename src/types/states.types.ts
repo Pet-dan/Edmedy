@@ -10,15 +10,46 @@ export interface IAddStaffSlice {
   state: string;
   city: string;
   address: string;
-  passport: File | string;
+  picture: File | string;
   bankName: string;
   accountName: string;
   accountNumber: string | number;
   role: {
-    position: string;
-    role: string;
+    position:
+      | "Position"
+      | "Teacher"
+      | "Cleaner"
+      | "Bus Driver"
+      | "Security"
+      | "Bursar"
+      | "Nurse"
+      | "Chef"
+      | "Bus Assistant"
+      | "Nanny"
+      | "Gardener"
+      | "Others";
+    otherPosition: string;
+    // specifically for teachers
+    class:
+      | "Class"
+      | "JSS 1"
+      | "JSS 2"
+      | "JSS 3"
+      | "SS 1"
+      | "SS 2"
+      | "SS 3"
+      | "Others";
+    otherClass: string;
+    subject: string;
     salary: string;
     signature: string | File;
+  };
+  nextOfKin: {
+    name: string;
+    email: string;
+    dob: string;
+    phoneNumber: string | number;
+    address: string;
   };
 }
 
