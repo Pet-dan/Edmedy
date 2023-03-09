@@ -10,7 +10,7 @@ import Signup from "./pages/SignUp";
 
 // Admin
 import AdminDashboard from "./pages/Admin/AdminDashboard";
-import Bursary from "./pages/Admin/Bursary";
+import Bursary from "./pages/Admin/Bursary/Bursary";
 import AdminCalendar from "./pages/Admin/AdminCalendar";
 import AdminSettings from "./pages/Admin/AdminSettings";
 import Sickbay from "./pages/Admin/Sickbay";
@@ -20,6 +20,8 @@ import EditStaff from "./pages/Admin/Staffs/EditStaff";
 import AdminStore from "./pages/Admin/AdminStore";
 import Students from "./pages/Admin/Students";
 import SubscriptionPlans from "./pages/SubscriptionPlans";
+import Inflow from "./pages/Admin/Bursary/Inflow";
+import Outflow from "./pages/Admin/Bursary/Outflow";
 // Parents
 import Kids from "./pages/Parent/Kids";
 import ParentCalendar from "./pages/Parent/ParentCalendar";
@@ -69,7 +71,11 @@ function App() {
         <Route path="students" element={<Students />} />
         <Route path="calendar" element={<AdminCalendar />} />
         <Route path="sick-bay" element={<Sickbay />} />
-        <Route path="bursary" element={<Bursary />} />
+        <Route path="bursary/">
+          <Route index element={<Bursary />} />
+          <Route path="inflow" element={<Inflow />} />
+          <Route path="outflow" element={<Outflow />} />
+        </Route>
         <Route path="store" element={<AdminStore />} />
         <Route path="settings" element={<AdminSettings />} />
       </Route>

@@ -3,22 +3,22 @@ import { BiDotsVerticalRounded, BiUser } from "react-icons/bi";
 import { FaExchangeAlt } from "react-icons/fa";
 import { GiBank } from "react-icons/gi";
 import { Link } from "react-router-dom";
-import DashboardLayout from "../../components/DashboardLayout";
+import DashboardLayout from "../../../components/DashboardLayout";
 import TableLayout, {
   SingleTableHeader,
   SingleTableRowItem,
   TableHeader,
   TableRow,
   TableRowsContainer,
-} from "../../components/TableLayout";
+} from "../../../components/TableLayout";
 import {
   ContentBox,
   SmallContentBoxWIthAvatar,
-} from "../../components/UI/ContentBox";
+} from "../../../components/UI/ContentBox";
 import {
   bursaryTransactions,
   recentTransactionsHeaders,
-} from "../../static/data";
+} from "../../../static/data";
 const Bursary = () => {
   return (
     <DashboardLayout pageTitle="Bursary">
@@ -72,10 +72,18 @@ const Bursary = () => {
               <FaExchangeAlt />
               Petty Cash
             </div> */}
-            <div className={styles.bursary_icons}>
+            <Link to={"/admin/bursary/inflow"} className={styles.bursary_icons}>
               <GiBank />
               In-Flow
-            </div>
+            </Link>
+
+            <Link
+              to={"/admin/bursary/outflow"}
+              className={styles.bursary_icons}
+            >
+              <FaExchangeAlt />
+              Out-flow
+            </Link>
           </div>
         </ContentBox>
 
@@ -145,7 +153,8 @@ const Bursary = () => {
 const styles = {
   flex_containers:
     "flex items-center justify-center md:justify-start gap-6 flex-wrap w-full mb-6",
-  bursary_icons: "flex items-center gap-x-3 text-darkGray font-bold",
+  bursary_icons:
+    "flex items-center gap-x-3 text-darkGray font-bold hover:underline",
 };
 
 export default Bursary;

@@ -326,7 +326,7 @@ const StaffForm: FC<StaffFormProps> = ({
                   addStaffSlice.role.class === "Others" && (
                     <Input
                       type="text"
-                      placeholder="Kindly Specify Class"
+                      placeholder="Specify name of class"
                       value={addStaffSlice.role.otherClass}
                       name="otherClass"
                       onChange={editStaffRole}
