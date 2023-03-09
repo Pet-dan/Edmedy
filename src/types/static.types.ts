@@ -43,7 +43,6 @@ export interface TabsProps {
 }
 
 export interface StaffEmploymentRecordProps {
-  date: string;
   title: string;
   link: string;
 }
@@ -57,8 +56,7 @@ export interface StaffLessonNotesProps {
 
 export interface bursaryTransactionsProps {
   date: string;
-  transactionName: string;
+  time: string;
   recepient: string;
-  amount: number;
-  success: boolean;
+  transactionType: "inflow" | "outflow";
 }

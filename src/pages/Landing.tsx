@@ -12,7 +12,7 @@ const Landing = () => {
         <div className="text-center my-16">
           <img className="m-auto md:w-[400px] w-[240px]" src={logo} alt="" />
           <h1 className="text-[#636363] text-[50px] font-extrabold mt-10">
-            Welcome to the <span className="text-[#000000] ">Edssitance</span>{" "}
+            Welcome to the <span className="text-[#000000] ">Edssistance</span>{" "}
             Network
           </h1>
           <p className="mt-2 text-[#636363] p-2">

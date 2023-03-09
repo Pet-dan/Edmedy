@@ -59,7 +59,7 @@ export const Profile = () => {
             <section>
               <ContentBoxWithAvatarHeader
                 avatar={<BiUser />}
-                header={"Reference/Next Of Kin information"}
+                header={"Reference/Next Of Kin Information"}
                 hasButton={false}
               />
               <div className={styles.content_rows}>
@@ -113,17 +113,12 @@ export const EmploymentRecord = () => {
                   <SingleTableRowItem
                     width={staffEmploymentRecordHeaders[0].width}
                   >
-                    <p className={styles.bold_font}>{employmentRecord.date}</p>
-                  </SingleTableRowItem>
-                  <SingleTableRowItem
-                    width={staffEmploymentRecordHeaders[1].width}
-                  >
                     <p className="text-[16px] text-darkerGray">
                       {employmentRecord.title}
                     </p>
                   </SingleTableRowItem>
                   <SingleTableRowItem
-                    width={staffEmploymentRecordHeaders[2].width}
+                    width={staffEmploymentRecordHeaders[1].width}
                   >
                     <a
                       href={employmentRecord.link}

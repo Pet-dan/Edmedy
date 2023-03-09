@@ -164,8 +164,8 @@ const Step3: FC<StepProps> = ({ increaseStep }) => {
           );
         })}
         <h2 className="my-3 font-bold text-darkerGray text-center">
-          Add the account details school fees and other payments would be paid
-          into
+          Kindly provide the account details school fees and other payments
+          would be paid into
         </h2>
         {schoolBankDetails.map((input, index: number) => {
           return (

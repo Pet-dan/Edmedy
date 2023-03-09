@@ -4,6 +4,7 @@ import { countryList } from "../../assets/static";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import {
+  updateDocumentDetails,
   updateNextOfKinDetails,
   updateRoleDetails,
   updateStaffDetails,
@@ -12,6 +13,7 @@ import SelectContainer from "../UI/SelectContainer";
 import { OutlineButton } from "../UI/Buttons";
 import { useNavigate } from "react-router-dom";
 import Input from "../UI/Input";
+import { useFileUpload } from "../../utils/file-upload";
 
 const StaffForm: FC<StaffFormProps> = ({
   firstStepTitle,
@@ -21,6 +23,7 @@ const StaffForm: FC<StaffFormProps> = ({
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState<number>(1);
   const addStaffSlice = useSelector((state: RootState) => state.addStaff);
+  const uploadFile = useFileUpload();
   const dispatch = useDispatch();
   const editStaffDetails = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(updateStaffDetails({ key: e.target.name, value: e.target.value }));
@@ -175,10 +178,7 @@ const StaffForm: FC<StaffFormProps> = ({
                 />
                 <label htmlFor="file" className="input-field">
                   {addStaffSlice?.picture
-                    ? (addStaffSlice.picture as File)?.name?.length > 30
-                      ? (addStaffSlice.picture as File)?.name?.slice(0, 30) +
-                        "..."
-                      : (addStaffSlice.picture as File)?.name
+                    ? (addStaffSlice.picture as File)?.name
                     : "Upload Picture"}
                 </label>
                 <input
@@ -186,16 +186,7 @@ const StaffForm: FC<StaffFormProps> = ({
                   className="hidden"
                   id="file"
                   onChange={(e) => {
-                    const file = e?.target?.files?.[0];
-
-                    if (file?.type.includes("image")) {
-                      dispatch(
-                        updateStaffDetails({
-                          key: "picture",
-                          value: file,
-                        })
-                      );
-                    }
+                    uploadFile(e, updateStaffDetails, "picture");
                   }}
                 />
               </div>
@@ -270,6 +261,51 @@ const StaffForm: FC<StaffFormProps> = ({
                   value={addStaffSlice.nextOfKin.address}
                   placeholder="Enter Address"
                   onChange={editNextOfKinDetails}
+                />
+              </div>
+            </article>
+            <article className="px-6">
+              <h1 className={styles.formSectionTitle}>Personal Documents</h1>
+              <div className={styles.gridContainer}>
+                <label htmlFor="file" className="input-field">
+                  {addStaffSlice?.documents.waec
+                    ? (addStaffSlice.documents.waec as File)?.name
+                    : "Upload Waec Certificate"}
+                </label>
+                <input
+                  type="file"
+                  className="hidden"
+                  id="file"
+                  onChange={(e) => {
+                    uploadFile(e, updateDocumentDetails, "waec");
+                  }}
+                />
+
+                <label htmlFor="file" className="input-field">
+                  {addStaffSlice?.documents.birthCertificate
+                    ? (addStaffSlice.documents.birthCertificate as File)?.name
+                    : "Upload Birth Certificate"}
+                </label>
+                <input
+                  type="file"
+                  className="hidden"
+                  id="file"
+                  onChange={(e) => {
+                    uploadFile(e, updateDocumentDetails, "birthCertificate");
+                  }}
+                />
+                <label htmlFor="file" className="input-field">
+                  {addStaffSlice?.documents.universityDegree
+                    ? (addStaffSlice.documents.universityDegree as File)?.name
+                    : "Upload University Degree Certificate"}
+                </label>
+                <input
+                  type="file"
+                  className="hidden"
+                  id="file"
+                  onChange={(e) => {
+                    uploadFile(e, updateDocumentDetails, "universityDegree");
+                  }}
                 />
               </div>
             </article>
@@ -351,13 +387,7 @@ const StaffForm: FC<StaffFormProps> = ({
                 <>
                   <label htmlFor="file" className="input-field">
                     {addStaffSlice?.role?.signature
-                      ? (addStaffSlice.role?.signature as File)?.name?.length >
-                        30
-                        ? (addStaffSlice.role?.signature as File)?.name?.slice(
-                            0,
-                            30
-                          ) + "..."
-                        : (addStaffSlice.role?.signature as File)?.name
+                      ? (addStaffSlice.role?.signature as File)?.name
                       : "Upload Signature"}
                   </label>
                   <input
@@ -365,15 +395,7 @@ const StaffForm: FC<StaffFormProps> = ({
                     className="hidden"
                     id="file"
                     onChange={(e) => {
-                      const file = e?.target?.files?.[0];
-                      if (file?.type.includes("image")) {
-                        dispatch(
-                          updateRoleDetails({
-                            key: "signature",
-                            value: file,
-                          })
-                        );
-                      }
+                      uploadFile(e, updateRoleDetails, "signature");
                     }}
                   />
                 </>

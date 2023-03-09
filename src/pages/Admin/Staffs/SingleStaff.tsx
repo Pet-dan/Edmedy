@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 
 const tabs: TabsProps[] = [
   { title: "Profile", component: <Profile /> },
-  { title: "Employment Record", component: <EmploymentRecord /> },
+  { title: "Employment Documents", component: <EmploymentRecord /> },
 ];
 
 const SingleStaff = () => {
@@ -66,6 +66,10 @@ const SingleStaff = () => {
             </Link>
           </div>
         </header>
+
+        <p className="mt-3">
+          Started working in <span className="font-bold">February, 2022</span>
+        </p>
         {/* tabs */}
         <div className="mt-8 sm:px-0 px-4">
           <div className="w-full max-w-full overflow-x-scroll border-b-[1.5px] flex items-center gap-x-4 pb-2">

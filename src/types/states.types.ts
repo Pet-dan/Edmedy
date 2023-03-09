@@ -51,6 +51,11 @@ export interface IAddStaffSlice {
     phoneNumber: string | number;
     address: string;
   };
+  documents: {
+    waec: string | File;
+    birthCertificate: string | File;
+    universityDegree: string | File;
+  };
 }
 
 // ================ STATES ===============

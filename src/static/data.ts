@@ -296,16 +296,15 @@ export const singleStaffDetails = {
 };
 
 export const staffEmploymentRecordHeaders: tableHeaders[] = [
-  { text: "Date", width: 200 },
-  { text: "Title", width: 200 },
-  { text: "Status", width: 200 },
+  { text: "Title", width: 300 },
+  { text: "Status", width: 300 },
 ];
 
 export const staffEmploymentRecord: StaffEmploymentRecordProps[] = [
-  { date: "02/09/2023", title: "Birth Certificate", link: "" },
-  { date: "02/09/2023", title: "WAEC Certificate", link: "" },
-  { date: "02/09/2023", title: "University Degree", link: "" },
-  { date: "02/09/2023", title: "Change of name", link: "" },
+  { title: "Birth Certificate", link: "" },
+  { title: "WAEC Certificate", link: "" },
+  { title: "University Degree", link: "" },
+  { title: "Change of name", link: "" },
 ];
 
 export const staffLessonNoteHeaders: tableHeaders[] = [
@@ -362,46 +361,41 @@ export const staffLessonNotes: StaffLessonNotesProps[] = [
 
 export const recentTransactionsHeaders: tableHeaders[] = [
   { text: "Date", width: 120 },
-  { text: "Transaction Name", width: 200 },
+  { text: "Time", width: 120 },
+  { text: "Transaction Type", width: 200 },
   { text: "Recepient", width: 200 },
-  { text: "Amount(NGN)", width: 120 },
-  { text: "Status", width: 160 },
+  { text: "Detail", width: 150 },
 ];
 
 export const bursaryTransactions: bursaryTransactionsProps[] = [
   {
     date: "14-08-23",
-    transactionName: "Restocking of sick-bay",
+    time: "6:30pm",
     recepient: "Alpha-Zeus Pharmacy",
-    amount: 100000,
-    success: false,
+    transactionType: "inflow",
   },
   {
     date: "14-08-23",
-    transactionName: "Restocking of sick-bay",
+    time: "6:30pm",
     recepient: "Alpha-Zeus Pharmacy",
-    amount: 100000,
-    success: false,
+    transactionType: "inflow",
   },
   {
     date: "14-08-23",
-    transactionName: "Restocking of sick-bay",
+    time: "6:30pm",
     recepient: "Alpha-Zeus Pharmacy",
-    amount: 100000,
-    success: true,
+    transactionType: "outflow",
   },
   {
     date: "14-08-23",
-    transactionName: "Restocking of sick-bay",
+    time: "6:30pm",
     recepient: "Alpha-Zeus Pharmacy",
-    amount: 100000,
-    success: false,
+    transactionType: "inflow",
   },
   {
     date: "14-08-23",
-    transactionName: "Restocking of sick-bay",
+    time: "6:30pm",
     recepient: "Alpha-Zeus Pharmacy",
-    amount: 100000,
-    success: true,
+    transactionType: "outflow",
   },
 ];
