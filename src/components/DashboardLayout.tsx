@@ -15,10 +15,10 @@ const adminLinks = [
   { icon: <MdOutlineDashboard />, text: "Dashboard", href: "/admin/dashboard" },
   { icon: <FaRegUser />, text: "Staff Members", href: "/admin/staffs" },
   { icon: <FiUsers />, text: "Students", href: "/admin/students" },
-  { icon: <FiCalendar />, text: "Calendar", href: "/admin/calendar" },
-  { icon: <AiOutlinePlusSquare />, text: "Sick bay", href: "/admin/sick-bay" },
+  // { icon: <FiCalendar />, text: "Calendar", href: "/admin/calendar" },
+  // { icon: <AiOutlinePlusSquare />, text: "Sick bay", href: "/admin/sick-bay" },
   { icon: <GiMoneyStack />, text: "Bursary", href: "/admin/bursary" },
-  { icon: <RiStore2Line />, text: "Store", href: "/admin/store" },
+  // { icon: <RiStore2Line />, text: "Store", href: "/admin/store" },
   { icon: <BsGear />, text: "Settings", href: "/admin/settings" },
 ];
 const studentLinks = [
@@ -73,8 +73,8 @@ const DashboardLayout: FC<DashboardProps> = ({
 
   useEffect(() => {
     document.title = documentTitle
-      ? `Edmedy | ${documentTitle}`
-      : `Edmedy | ${pageTitle}`;
+      ? `Edssistance | ${documentTitle}`
+      : `Edssistance | ${pageTitle}`;
   }, []);
   useEffect(() => {
     setLinks(getLinks());

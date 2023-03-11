@@ -17,6 +17,8 @@ const initialState: IAddStaffSlice = {
   bankName: "",
   accountName: "",
   accountNumber: "",
+  monthOfEmployment: "Month Of Employment",
+  yearOfEmployment: "2000",
   role: {
     position: "Position",
     otherPosition: "",
@@ -33,11 +35,7 @@ const initialState: IAddStaffSlice = {
     phoneNumber: "",
     address: "",
   },
-  documents: {
-    waec: "",
-    birthCertificate: "",
-    universityDegree: "",
-  },
+  documents: [{ id: 0, name: "", file: "" }],
 };
 
 const addStaffSlice = createSlice({
@@ -76,12 +74,30 @@ const addStaffSlice = createSlice({
       state.nextOfKin[action.payload.key as keyof typeof state.nextOfKin] =
         action.payload.value;
     },
+    addNewDocument: (state: IAddStaffSlice) => {
+      state.documents = [
+        ...state.documents,
+        { id: new Date().getTime(), name: "", file: "" },
+      ];
+    },
+    removeDocument: (
+      state: IAddStaffSlice,
+      action: PayloadAction<{ id: number }>
+    ) => {
+      state.documents = state.documents.filter(
+        (doc) => doc.id !== action.payload.id
+      );
+    },
     updateDocumentDetails: (
       state: IAddStaffSlice,
-      action: PayloadAction<{ key: string; value: string }>
+      action: PayloadAction<{ id: number; key: string; value: string | File }>
     ) => {
-      state.documents[action.payload.key as keyof typeof state.documents] =
-        action.payload.value;
+      state.documents = state.documents.map((doc: any) => {
+        if (doc.id === action.payload.id) {
+          doc[action.payload.key] = action.payload.value;
+        }
+        return doc;
+      });
     },
   },
 });
@@ -90,6 +106,8 @@ export const {
   updateStaffDetails,
   updateRoleDetails,
   updateNextOfKinDetails,
+  addNewDocument,
+  removeDocument,
   updateDocumentDetails,
 } = addStaffSlice.actions;
 export const addStaffReducer = addStaffSlice.reducer;

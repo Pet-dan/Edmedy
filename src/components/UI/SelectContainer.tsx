@@ -24,7 +24,7 @@ const SelectContainer: FC<SelectContainerProps> = ({
   return (
     <div className={`w-full relative`}>
       <header
-        className={`w-full cursor-pointer border-[1.5px] flex justify-between items-center gap-x-4 p-3 rounded-md bg-white ${
+        className={`w-full cursor-pointer border-[1.5px] flex justify-between items-center gap-x-4 px-3 py-2 rounded-md bg-white ${
           accordionOpened && "border-black"
         }`}
         onClick={toggleAccordion}

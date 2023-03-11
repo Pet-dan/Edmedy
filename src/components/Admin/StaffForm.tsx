@@ -1,9 +1,11 @@
-import React, { ChangeEvent, FC, useState } from "react";
+import React, { ChangeEvent, FC, Fragment, useState } from "react";
 import { InputFields, StaffFormProps } from "../../types/componentsProps.types";
 import { countryList } from "../../assets/static";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import {
+  addNewDocument,
+  removeDocument,
   updateDocumentDetails,
   updateNextOfKinDetails,
   updateRoleDetails,
@@ -14,6 +16,23 @@ import { OutlineButton } from "../UI/Buttons";
 import { useNavigate } from "react-router-dom";
 import Input from "../UI/Input";
 import { useFileUpload } from "../../utils/file-upload";
+import { GiCancel } from "react-icons/gi";
+import { monthsType } from "../../types/static.types";
+
+const months: monthsType[] = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
 const StaffForm: FC<StaffFormProps> = ({
   firstStepTitle,
@@ -30,6 +49,9 @@ const StaffForm: FC<StaffFormProps> = ({
   };
   const editStaffRole = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(updateRoleDetails({ key: e.target.name, value: e.target.value }));
+  };
+  const updateMonth = (value: string) => {
+    dispatch(updateStaffDetails({ key: "monthOfEmployment", value }));
   };
   const updateGender = (value: string) => {
     dispatch(updateStaffDetails({ key: "gender", value }));
@@ -189,6 +211,23 @@ const StaffForm: FC<StaffFormProps> = ({
                     uploadFile(e, updateStaffDetails, "picture");
                   }}
                 />
+
+                <div className="flex items-center gap-x-4">
+                  <SelectContainer
+                    list={months}
+                    currentItem={addStaffSlice.monthOfEmployment}
+                    fitContent={false}
+                    updateItem={updateMonth}
+                  />
+                  <Input
+                    name="yearOfEmployment"
+                    value={addStaffSlice.yearOfEmployment}
+                    placeholder="Year of employment (YYYY)"
+                    type="number"
+                    max={new Date().getFullYear()}
+                    onChange={editStaffDetails}
+                  />
+                </div>
               </div>
             </article>
 
@@ -265,48 +304,75 @@ const StaffForm: FC<StaffFormProps> = ({
               </div>
             </article>
             <article className="px-6">
-              <h1 className={styles.formSectionTitle}>Personal Documents</h1>
+              <h1 className={styles.formSectionTitle}>Employment Documents</h1>
               <div className={styles.gridContainer}>
-                <label htmlFor="file" className="input-field">
-                  {addStaffSlice?.documents.waec
-                    ? (addStaffSlice.documents.waec as File)?.name
-                    : "Upload Waec Certificate"}
-                </label>
-                <input
-                  type="file"
-                  className="hidden"
-                  id="file"
-                  onChange={(e) => {
-                    uploadFile(e, updateDocumentDetails, "waec");
+                {addStaffSlice?.documents?.map((doc, index) => {
+                  return (
+                    <Fragment key={index}>
+                      <div className="w-full flex relative">
+                        <input
+                          type="text"
+                          placeholder="Enter Document Name"
+                          value={doc.name}
+                          className="input-field w-full"
+                          onChange={(e) => {
+                            dispatch(
+                              updateDocumentDetails({
+                                id: doc.id,
+                                key: "name",
+                                value: e.target.value,
+                              })
+                            );
+                          }}
+                        />
+                        <span
+                          className="absolute right-[10px] top-[50%] -translate-y-[50%] text-[20px] cursor-pointer"
+                          onClick={() => {
+                            // don't remove it if it is the last document
+                            addStaffSlice.documents.length > 1 &&
+                              dispatch(removeDocument({ id: doc.id }));
+                          }}
+                        >
+                          <GiCancel />
+                        </span>
+                      </div>
+                      <label
+                        htmlFor="file"
+                        className="cursor-pointer block  input-field"
+                      >
+                        {doc?.file
+                          ? (doc?.file as File)?.name
+                          : "Upload Document"}
+                      </label>
+                      <input
+                        type="file"
+                        className="hidden"
+                        id="file"
+                        onChange={(e) => {
+                          const file = e?.target?.files?.[0];
+                          if (file?.type.includes("image")) {
+                            dispatch(
+                              updateDocumentDetails({
+                                id: doc.id,
+                                key: "file",
+                                value: file as File,
+                              })
+                            );
+                          }
+                        }}
+                      />
+                    </Fragment>
+                  );
+                })}
+                <button
+                  className="py-2 px-4 rounded-md bg-black -full text-white"
+                  type="button"
+                  onClick={() => {
+                    dispatch(addNewDocument());
                   }}
-                />
-
-                <label htmlFor="file" className="input-field">
-                  {addStaffSlice?.documents.birthCertificate
-                    ? (addStaffSlice.documents.birthCertificate as File)?.name
-                    : "Upload Birth Certificate"}
-                </label>
-                <input
-                  type="file"
-                  className="hidden"
-                  id="file"
-                  onChange={(e) => {
-                    uploadFile(e, updateDocumentDetails, "birthCertificate");
-                  }}
-                />
-                <label htmlFor="file" className="input-field">
-                  {addStaffSlice?.documents.universityDegree
-                    ? (addStaffSlice.documents.universityDegree as File)?.name
-                    : "Upload University Degree Certificate"}
-                </label>
-                <input
-                  type="file"
-                  className="hidden"
-                  id="file"
-                  onChange={(e) => {
-                    uploadFile(e, updateDocumentDetails, "universityDegree");
-                  }}
-                />
+                >
+                  Add new document
+                </button>
               </div>
             </article>
           </div>

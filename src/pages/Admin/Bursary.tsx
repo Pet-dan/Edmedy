@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { BiDotsVerticalRounded, BiUser } from "react-icons/bi";
+import React, { ReactElement, useState } from "react";
+import { BiDotsVerticalRounded, BiTransfer, BiUser } from "react-icons/bi";
 import { FaExchangeAlt } from "react-icons/fa";
 import { GiBank } from "react-icons/gi";
+import { RiArrowRightDownLine, RiArrowRightUpLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import DashboardLayout from "../../components/DashboardLayout";
 import TableLayout, {
@@ -21,11 +22,11 @@ import {
   recentTransactionsHeaders,
 } from "../../static/data";
 
-type transactionTypes = "general" | "inflow" | "outflow";
+type transactionTypes = "all" | "in-flow" | "out-flow";
 
 const Bursary = () => {
   const [transactionFilter, setTransactionFilter] =
-    useState<transactionTypes>("general");
+    useState<transactionTypes>("all");
   return (
     <DashboardLayout pageTitle="Bursary">
       <section className="sm:p-6 py-6 min-h-screen">
@@ -57,7 +58,7 @@ const Bursary = () => {
           />
           <SmallContentBoxWIthAvatar
             avatar={"₦"}
-            title={"Outflow"}
+            title={"Out-flow"}
             subtitle={"1,000,000"}
             iconBg={"#f5515136"}
             iconColor={"darkred"}
@@ -78,14 +79,14 @@ const Bursary = () => {
               <FaExchangeAlt />
               Petty Cash
             </div> */}
-            <div className={styles.bursary_icons}>
+            {/* <div className={styles.bursary_icons}>
               <GiBank />
               In-Flow
-            </div>
+            </div> */}
 
             <div className={styles.bursary_icons}>
               <FaExchangeAlt />
-              Out-flow
+              Withdrawal / Out-flow
             </div>
           </div>
         </ContentBox>
@@ -99,23 +100,27 @@ const Bursary = () => {
           </header>
           <div className="my-4 overflow-x-scroll">
             <div className="flex items-center min-w-fit justify-center gap-x-3">
-              {(["general", "inflow", "outflow"] as transactionTypes[]).map(
-                (transactionType, index: number) => {
-                  return (
-                    <div
-                      key={index}
-                      className="min-w-fit"
-                      onClick={() => setTransactionFilter(transactionType)}
-                    >
-                      {transactionFilter === transactionType ? (
-                        <ButtonFilled text={transactionType} />
-                      ) : (
-                        <OutlineButton text={transactionType} />
-                      )}
-                    </div>
-                  );
-                }
-              )}
+              {(
+                [
+                  { text: "in-flow", icon: <GiBank /> },
+                  { text: "out-flow", icon: <BiTransfer /> },
+                  { text: "all" },
+                ] as { text: transactionTypes; icon?: ReactElement }[]
+              ).map((transactionType, index: number) => {
+                return (
+                  <div
+                    key={index}
+                    className="min-w-fit"
+                    onClick={() => setTransactionFilter(transactionType.text)}
+                  >
+                    {transactionFilter === transactionType.text ? (
+                      <ButtonFilled {...transactionType} />
+                    ) : (
+                      <OutlineButton {...transactionType} />
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
 
@@ -129,7 +134,7 @@ const Bursary = () => {
               <TableRowsContainer>
                 {bursaryTransactions
                   ?.filter((transaction) => {
-                    return transactionFilter === "general"
+                    return transactionFilter === "all"
                       ? transaction
                       : transaction.transactionType.toLowerCase() ===
                           transactionFilter;
@@ -140,16 +145,6 @@ const Bursary = () => {
                         <SingleTableRowItem
                           width={recentTransactionsHeaders[0].width}
                         >
-                          <p>{transaction.date}</p>
-                        </SingleTableRowItem>
-                        <SingleTableRowItem
-                          width={recentTransactionsHeaders[1].width}
-                        >
-                          <p>{transaction.time}</p>
-                        </SingleTableRowItem>
-                        <SingleTableRowItem
-                          width={recentTransactionsHeaders[2].width}
-                        >
                           <p>
                             <p
                               className={`max-w-fit px-2 py-1 rounded-[20px] font-bold text-[14px] ${
@@ -158,16 +153,29 @@ const Bursary = () => {
                                   : "bg-red-100 text-red-800"
                               }`}
                             >
-                              {transaction.transactionType === "inflow"
-                                ? "Inflow"
-                                : "Outflow"}
+                              {transaction.transactionType === "inflow" ? (
+                                <RiArrowRightUpLine />
+                              ) : (
+                                <RiArrowRightDownLine />
+                              )}
                             </p>
                           </p>
                         </SingleTableRowItem>
                         <SingleTableRowItem
+                          width={recentTransactionsHeaders[1].width}
+                        >
+                          <p>{transaction.date}</p>
+                        </SingleTableRowItem>
+                        <SingleTableRowItem
+                          width={recentTransactionsHeaders[2].width}
+                        >
+                          <p>{transaction.time}</p>
+                        </SingleTableRowItem>
+
+                        <SingleTableRowItem
                           width={recentTransactionsHeaders[3].width}
                         >
-                          <p>{transaction.recepient}</p>
+                          <p>{transaction.name}</p>
                         </SingleTableRowItem>
                         <SingleTableRowItem
                           width={recentTransactionsHeaders[4].width}

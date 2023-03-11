@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { FC, ReactElement } from "react";
 import { BiUser } from "react-icons/bi";
 import { GiBank, GiTie } from "react-icons/gi";
 import {
@@ -26,23 +26,29 @@ const getDetails = (list: any, keyPair: string): ReactElement => {
       {Object.keys(list[keyPair as keyof typeof list]).map(
         (user_details: any, index: number) => {
           const element = list[keyPair as keyof typeof list]?.[user_details];
-          return (
-            <span key={index} className={styles.content}>
-              <p className={styles.content_title}>{user_details}</p>
-              <h2 className={styles.content_text}>
-                {typeof element === "string" || typeof element === "number"
-                  ? element
-                  : element.join(", ")}
-              </h2>
-            </span>
-          );
+          return <span key={index} className={styles.content}></span>;
         }
       )}
     </>
   );
 };
 
+interface singleProfileDetailProps {
+  title: string;
+  subtitle: string;
+}
+
+const SingleProfileDetail: FC<singleProfileDetailProps> = (props) => {
+  return (
+    <article className={styles.content}>
+      <p className={styles.content_title}>{props.title}</p>
+      <h2 className={styles.content_text}>{props.subtitle}</h2>
+    </article>
+  );
+};
+
 export const Profile = () => {
+  const { user, nextOfKin, role, accountInfo } = singleStaffDetails;
   return (
     <>
       <div className="w-full flex gap-4 xl:flex-row flex-col">
@@ -53,7 +59,18 @@ export const Profile = () => {
             hasButton={false}
           >
             <section className={styles.content_rows}>
-              {getDetails(singleStaffDetails, "user")}
+              <SingleProfileDetail title={"Name"} subtitle={user.name} />
+              <SingleProfileDetail title={"Gender"} subtitle={user.gender} />
+              <SingleProfileDetail
+                title={"Date Of Birth"}
+                subtitle={user.dob}
+              />
+              <SingleProfileDetail
+                title={"Telephone"}
+                subtitle={user.telephone}
+              />
+              <SingleProfileDetail title={"Email"} subtitle={user.email} />
+              <SingleProfileDetail title={"Address"} subtitle={user.address} />
             </section>
             <hr className="my-4 border-t-2 block w-[80%] mx-auto" />
             <section>
@@ -63,7 +80,27 @@ export const Profile = () => {
                 hasButton={false}
               />
               <div className={styles.content_rows}>
-                {getDetails(singleStaffDetails, "nextOfKin")}
+                <SingleProfileDetail title={"Name"} subtitle={nextOfKin.name} />
+                <SingleProfileDetail
+                  title={"Gender"}
+                  subtitle={nextOfKin.gender}
+                />
+                <SingleProfileDetail
+                  title={"Date Of Birth"}
+                  subtitle={nextOfKin.dob}
+                />
+                <SingleProfileDetail
+                  title={"Telephone"}
+                  subtitle={nextOfKin.telephone}
+                />
+                <SingleProfileDetail
+                  title={"Email"}
+                  subtitle={nextOfKin.email}
+                />
+                <SingleProfileDetail
+                  title={"Address"}
+                  subtitle={nextOfKin.address}
+                />
               </div>
             </section>
           </ContentBoxWithAvatar>
@@ -75,7 +112,15 @@ export const Profile = () => {
             hasButton={false}
           >
             <section className={styles.content_rows}>
-              {getDetails(singleStaffDetails, "role")}
+              <SingleProfileDetail
+                title={"Position"}
+                subtitle={role.position}
+              />
+              <SingleProfileDetail title={"Class"} subtitle={role.class} />
+              <SingleProfileDetail
+                title={"Subject(s)"}
+                subtitle={role.subject.join(", ")}
+              />
             </section>
           </ContentBoxWithAvatar>
           <ContentBoxWithAvatar
@@ -87,7 +132,18 @@ export const Profile = () => {
             buttonText={"View Salary Record"}
           >
             <section className={styles.content_rows}>
-              {getDetails(singleStaffDetails, "accountInfo")}
+              <SingleProfileDetail
+                title={"Bank Name"}
+                subtitle={accountInfo.bank}
+              />
+              <SingleProfileDetail
+                title={"Account Name"}
+                subtitle={accountInfo.account_name}
+              />
+              <SingleProfileDetail
+                title={"Account Number"}
+                subtitle={accountInfo.account_number}
+              />
             </section>
           </ContentBoxWithAvatar>
         </div>

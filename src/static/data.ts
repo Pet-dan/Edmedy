@@ -273,7 +273,6 @@ export const singleStaffDetails = {
     telephone: "08098309887",
     email: "Jaiyeolaosanyin@gmail.com",
     address: "5, Alade Crescent, Sabo, Kampala, Uganda",
-    class: "JSS 2",
   },
   nextOfKin: {
     name: "Alage-James",
@@ -284,7 +283,7 @@ export const singleStaffDetails = {
     address: "5, Alade Crescent, Sabo, Kampala, Uganda",
   },
   role: {
-    role: "Teacher",
+    position: "Teacher",
     class: "JSS 2",
     subject: ["Literature in English", "Yoruba"],
   },
@@ -360,42 +359,42 @@ export const staffLessonNotes: StaffLessonNotesProps[] = [
 ];
 
 export const recentTransactionsHeaders: tableHeaders[] = [
+  { text: "Transaction Type", width: 100 },
   { text: "Date", width: 120 },
   { text: "Time", width: 120 },
-  { text: "Transaction Type", width: 200 },
-  { text: "Recepient", width: 200 },
-  { text: "Detail", width: 150 },
+  { text: "Name", width: 200 },
+  { text: "", width: 150 },
 ];
 
 export const bursaryTransactions: bursaryTransactionsProps[] = [
   {
     date: "14-08-23",
     time: "6:30pm",
-    recepient: "Alpha-Zeus Pharmacy",
+    name: "Alpha-Zeus Pharmacy",
     transactionType: "inflow",
   },
   {
     date: "14-08-23",
     time: "6:30pm",
-    recepient: "Alpha-Zeus Pharmacy",
+    name: "Alpha-Zeus Pharmacy",
     transactionType: "inflow",
   },
   {
     date: "14-08-23",
     time: "6:30pm",
-    recepient: "Alpha-Zeus Pharmacy",
+    name: "Alpha-Zeus Pharmacy",
     transactionType: "outflow",
   },
   {
     date: "14-08-23",
     time: "6:30pm",
-    recepient: "Alpha-Zeus Pharmacy",
+    name: "Alpha-Zeus Pharmacy",
     transactionType: "inflow",
   },
   {
     date: "14-08-23",
     time: "6:30pm",
-    recepient: "Alpha-Zeus Pharmacy",
+    name: "Alpha-Zeus Pharmacy",
     transactionType: "outflow",
   },
 ];

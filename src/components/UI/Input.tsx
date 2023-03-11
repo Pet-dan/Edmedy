@@ -6,6 +6,7 @@ interface InputProps {
   value: any;
   onChange: any;
   placeholder: string;
+  max?: number;
 }
 const Input: FC<InputProps> = ({
   type,
@@ -13,6 +14,7 @@ const Input: FC<InputProps> = ({
   value,
   placeholder,
   onChange,
+  max,
 }) => {
   return (
     <input
@@ -22,6 +24,7 @@ const Input: FC<InputProps> = ({
       name={name}
       value={value}
       onChange={onChange}
+      max={max}
       required
     />
   );

@@ -57,9 +57,15 @@ const SingleStaff = () => {
                 Adedamola Alegbe James
               </h2>
               <p className="text-darkGray text-[1rem]">Teacher</p>
+              <p className="text-[0.8rem] mt-1">
+                <i>Started</i>
+                <span className="font-bold inline-block ml-[6px]">
+                  February, 2022
+                </span>
+              </p>
             </div>
           </div>
-          <div className=" flex gap-4 flex-wrap sm:flex-nowrap">
+          <div className=" flex gap-4 flex-wrap sm:flex-nowrap items-end justify-end">
             {/* <OutlineButton icon={<BiPaperPlane />} text={"Send Notification"} /> */}
             <Link to={"/admin/staffs/edit/1"}>
               <ButtonFilled icon={<BiPlus />} text={"Edit Staff Ptofile"} />
@@ -67,9 +73,6 @@ const SingleStaff = () => {
           </div>
         </header>
 
-        <p className="mt-3">
-          Started working in <span className="font-bold">February, 2022</span>
-        </p>
         {/* tabs */}
         <div className="mt-8 sm:px-0 px-4">
           <div className="w-full max-w-full overflow-x-scroll border-b-[1.5px] flex items-center gap-x-4 pb-2">
@@ -103,7 +106,7 @@ const SingleStaff = () => {
 const styles = {
   back_icon: "flex items-center gap-x- text-[16px] font-bold",
   header:
-    "mt-8 flex items-center gap-4 lg:flex-row flex-col lg:justify-between",
+    "mt-8 flex lg:items-center gap-4 md:flex-row flex-col justify-between",
 };
 
 export default SingleStaff;

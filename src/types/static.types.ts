@@ -57,6 +57,21 @@ export interface StaffLessonNotesProps {
 export interface bursaryTransactionsProps {
   date: string;
   time: string;
-  recepient: string;
+  name: string;
   transactionType: "inflow" | "outflow";
 }
+
+export type monthsType =
+  | "Month"
+  | "January"
+  | "February"
+  | "March"
+  | "April"
+  | "May"
+  | "June"
+  | "July"
+  | "August"
+  | "September"
+  | "October"
+  | "November"
+  | "December";

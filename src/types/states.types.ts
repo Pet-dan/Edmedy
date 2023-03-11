@@ -1,3 +1,5 @@
+import { monthsType } from "./static.types";
+
 // =========== SLICES ==========
 export interface IAddStaffSlice {
   firstname: string;
@@ -14,6 +16,8 @@ export interface IAddStaffSlice {
   bankName: string;
   accountName: string;
   accountNumber: string | number;
+  yearOfEmployment: string;
+  monthOfEmployment: string;
   role: {
     position:
       | "Position"
@@ -52,10 +56,10 @@ export interface IAddStaffSlice {
     address: string;
   };
   documents: {
-    waec: string | File;
-    birthCertificate: string | File;
-    universityDegree: string | File;
-  };
+    id: number;
+    name: string;
+    file: File | String;
+  }[];
 }
 
 // ================ STATES ===============
