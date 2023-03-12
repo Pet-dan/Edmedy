@@ -10,6 +10,15 @@ const OutlineButton: FC<ButtonsType> = ({ icon, text }) => {
   );
 };
 
+export const BlackOutlineButton: FC<ButtonsType> = ({ icon, text }) => {
+  return (
+    <button className={styles.buttons + " text-blackText border-blackText"}>
+      {icon && <span>{icon}</span>}
+      {text}
+    </button>
+  );
+};
+
 const ButtonFilled: FC<ButtonsType> = ({ icon, text }) => {
   return (
     <button className={styles.buttons + " border-black bg-black text-white"}>

@@ -22,7 +22,7 @@ const MobileSidebar: FC<MobileSidebarProps> = ({
         } transition-all duration-500 delay-500`}
       >
         <header className="flex items-center justify-between px-6">
-          <img src={logo} alt="logo" loading="lazy" className="w-[120px]" />
+          <img src={logo} alt="logo" loading="lazy" className="w-[180px]" />
           <span>
             <Squash toggled={true} size={23} toggle={setSidebarOpen} />
           </span>

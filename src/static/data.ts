@@ -359,42 +359,42 @@ export const staffLessonNotes: StaffLessonNotesProps[] = [
 ];
 
 export const recentTransactionsHeaders: tableHeaders[] = [
-  { text: "Transaction Type", width: 100 },
-  { text: "Date", width: 120 },
-  { text: "Time", width: 120 },
+  { text: "", width: 40 },
+  { text: "Date", width: 80 },
   { text: "Name", width: 200 },
-  { text: "", width: 150 },
+  { text: "Amount", width: 120 },
+  { text: "", width: 100 },
 ];
 
 export const bursaryTransactions: bursaryTransactionsProps[] = [
   {
     date: "14-08-23",
-    time: "6:30pm",
     name: "Alpha-Zeus Pharmacy",
+    amount: 10000,
     transactionType: "inflow",
   },
   {
     date: "14-08-23",
-    time: "6:30pm",
     name: "Alpha-Zeus Pharmacy",
+    amount: 10000,
     transactionType: "inflow",
   },
   {
     date: "14-08-23",
-    time: "6:30pm",
     name: "Alpha-Zeus Pharmacy",
+    amount: 10000,
     transactionType: "outflow",
   },
   {
     date: "14-08-23",
-    time: "6:30pm",
     name: "Alpha-Zeus Pharmacy",
+    amount: 10000,
     transactionType: "inflow",
   },
   {
     date: "14-08-23",
-    time: "6:30pm",
     name: "Alpha-Zeus Pharmacy",
+    amount: 10000,
     transactionType: "outflow",
   },
 ];

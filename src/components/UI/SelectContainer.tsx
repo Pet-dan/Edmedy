@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 
 interface SelectContainerProps {
-  list: string[];
+  list: string[] | number[];
   currentItem: string;
   updateItem: (value: string) => void;
   fitContent: boolean;
@@ -43,7 +43,7 @@ const SelectContainer: FC<SelectContainerProps> = ({
                 key={index}
                 className="p-3 text-darkGray hover:text-black w-full cursor-pointer"
                 onClick={() => {
-                  updateItem(listItem);
+                  updateItem(listItem as string);
                   closeAccordion();
                 }}
               >

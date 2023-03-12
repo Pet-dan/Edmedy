@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, Fragment, useState } from "react";
+import React, { ChangeEvent, FC, Fragment, useEffect, useState } from "react";
 import { InputFields, StaffFormProps } from "../../types/componentsProps.types";
 import { countryList } from "../../assets/static";
 import { useDispatch, useSelector } from "react-redux";
@@ -41,6 +41,7 @@ const StaffForm: FC<StaffFormProps> = ({
 }) => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState<number>(1);
+  const [years, setYears] = useState<number[]>([]);
   const addStaffSlice = useSelector((state: RootState) => state.addStaff);
   const uploadFile = useFileUpload();
   const dispatch = useDispatch();
@@ -52,6 +53,9 @@ const StaffForm: FC<StaffFormProps> = ({
   };
   const updateMonth = (value: string) => {
     dispatch(updateStaffDetails({ key: "monthOfEmployment", value }));
+  };
+  const updateYear = (value: string) => {
+    dispatch(updateStaffDetails({ key: "yearOfEmployment", value }));
   };
   const updateGender = (value: string) => {
     dispatch(updateStaffDetails({ key: "gender", value }));
@@ -71,6 +75,16 @@ const StaffForm: FC<StaffFormProps> = ({
       updateNextOfKinDetails({ key: e.target.name, value: e.target.value })
     );
   };
+
+  useEffect(() => {
+    // create an array of all the years from 1990 to this year
+    const yearsArr = [];
+    for (let i = 1990; i < new Date().getFullYear() + 1; i++) {
+      yearsArr.push(i);
+    }
+
+    setYears(yearsArr);
+  }, []);
 
   return (
     <section className="w-full mt-8 pb-8">
@@ -212,22 +226,18 @@ const StaffForm: FC<StaffFormProps> = ({
                   }}
                 />
 
-                <div className="flex items-center gap-x-4">
-                  <SelectContainer
-                    list={months}
-                    currentItem={addStaffSlice.monthOfEmployment}
-                    fitContent={false}
-                    updateItem={updateMonth}
-                  />
-                  <Input
-                    name="yearOfEmployment"
-                    value={addStaffSlice.yearOfEmployment}
-                    placeholder="Year of employment (YYYY)"
-                    type="number"
-                    max={new Date().getFullYear()}
-                    onChange={editStaffDetails}
-                  />
-                </div>
+                <SelectContainer
+                  list={months}
+                  currentItem={addStaffSlice.monthOfEmployment}
+                  fitContent={false}
+                  updateItem={updateMonth}
+                />
+                <SelectContainer
+                  list={years}
+                  currentItem={addStaffSlice.yearOfEmployment}
+                  fitContent={false}
+                  updateItem={updateYear}
+                />
               </div>
             </article>
 
@@ -262,7 +272,7 @@ const StaffForm: FC<StaffFormProps> = ({
 
             <article className="px-6">
               <h1 className={styles.formSectionTitle}>
-                Next Of Kin information
+                Next of Kin information
               </h1>
 
               <div className={styles.gridContainer}>

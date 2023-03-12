@@ -56,8 +56,8 @@ export interface StaffLessonNotesProps {
 
 export interface bursaryTransactionsProps {
   date: string;
-  time: string;
   name: string;
+  amount: number;
   transactionType: "inflow" | "outflow";
 }
 

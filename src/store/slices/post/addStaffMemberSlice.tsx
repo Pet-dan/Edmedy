@@ -17,8 +17,8 @@ const initialState: IAddStaffSlice = {
   bankName: "",
   accountName: "",
   accountNumber: "",
-  monthOfEmployment: "Month Of Employment",
-  yearOfEmployment: "2000",
+  monthOfEmployment: "Month of Employment",
+  yearOfEmployment: "Year of Employment",
   role: {
     position: "Position",
     otherPosition: "",

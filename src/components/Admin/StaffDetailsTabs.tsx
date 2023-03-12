@@ -76,7 +76,7 @@ export const Profile = () => {
             <section>
               <ContentBoxWithAvatarHeader
                 avatar={<BiUser />}
-                header={"Reference/Next Of Kin Information"}
+                header={"Reference/Next of Kin Information"}
                 hasButton={false}
               />
               <div className={styles.content_rows}>
@@ -86,7 +86,7 @@ export const Profile = () => {
                   subtitle={nextOfKin.gender}
                 />
                 <SingleProfileDetail
-                  title={"Date Of Birth"}
+                  title={"Date of Birth"}
                   subtitle={nextOfKin.dob}
                 />
                 <SingleProfileDetail

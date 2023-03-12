@@ -20,6 +20,8 @@ import EditStaff from "./pages/Admin/Staffs/EditStaff";
 import AdminStore from "./pages/Admin/AdminStore";
 import Students from "./pages/Admin/Students";
 import SubscriptionPlans from "./pages/SubscriptionPlans";
+import Generators from "./pages/Admin/Generators";
+
 // Parents
 import Kids from "./pages/Parent/Kids";
 import ParentCalendar from "./pages/Parent/ParentCalendar";
@@ -60,6 +62,7 @@ function App() {
       <Route path="/password-reset" element={<Password />} />
       <Route path="/admin/">
         <Route path="dashboard" element={<AdminDashboard />} />
+        <Route path="generators" element={<Generators />} />
         <Route path="staffs/">
           <Route index element={<Staffs />} />
           <Route path=":id" element={<SingleStaff />} />

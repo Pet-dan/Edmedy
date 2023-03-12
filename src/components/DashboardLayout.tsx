@@ -1,5 +1,5 @@
 import React, { FC, ReactElement, useEffect, useState } from "react";
-import { MdOutlineDashboard } from "react-icons/md";
+import { MdOutlineDashboard, MdWorkOutline } from "react-icons/md";
 import { FaRegUser } from "react-icons/fa";
 import { FiUsers, FiCalendar } from "react-icons/fi";
 import { AiOutlinePlusSquare } from "react-icons/ai";
@@ -17,6 +17,7 @@ const adminLinks = [
   { icon: <FiUsers />, text: "Students", href: "/admin/students" },
   // { icon: <FiCalendar />, text: "Calendar", href: "/admin/calendar" },
   // { icon: <AiOutlinePlusSquare />, text: "Sick bay", href: "/admin/sick-bay" },
+  { icon: <MdWorkOutline />, text: "Generators", href: "/admin/generators" },
   { icon: <GiMoneyStack />, text: "Bursary", href: "/admin/bursary" },
   // { icon: <RiStore2Line />, text: "Store", href: "/admin/store" },
   { icon: <BsGear />, text: "Settings", href: "/admin/settings" },
