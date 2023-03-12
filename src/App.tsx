@@ -62,7 +62,7 @@ function App() {
       <Route path="/password-reset" element={<Password />} />
       <Route path="/admin/">
         <Route path="dashboard" element={<AdminDashboard />} />
-        <Route path="generators" element={<Generators />} />
+        <Route path="generator" element={<Generators />} />
         <Route path="staffs/">
           <Route index element={<Staffs />} />
           <Route path=":id" element={<SingleStaff />} />

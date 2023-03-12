@@ -17,7 +17,7 @@ const adminLinks = [
   { icon: <FiUsers />, text: "Students", href: "/admin/students" },
   // { icon: <FiCalendar />, text: "Calendar", href: "/admin/calendar" },
   // { icon: <AiOutlinePlusSquare />, text: "Sick bay", href: "/admin/sick-bay" },
-  { icon: <MdWorkOutline />, text: "Generators", href: "/admin/generators" },
+  { icon: <MdWorkOutline />, text: "Generator", href: "/admin/generator" },
   { icon: <GiMoneyStack />, text: "Bursary", href: "/admin/bursary" },
   // { icon: <RiStore2Line />, text: "Store", href: "/admin/store" },
   { icon: <BsGear />, text: "Settings", href: "/admin/settings" },

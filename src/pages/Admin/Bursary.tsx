@@ -42,6 +42,10 @@ const Bursary = () => {
   return (
     <DashboardLayout pageTitle="Bursary">
       <>
+        <div className={styles.bursary_icons + " w-full justify-end sm:px-6"}>
+          <BiBook />
+          History
+        </div>
         {/* modal */}
         {modalOpen && (
           <ModalOverlay modalWidth={500}>
@@ -124,13 +128,14 @@ const Bursary = () => {
               In-Flow
             </div> */}
 
-              <div className={styles.bursary_icons}>
+              <div
+                className={
+                  styles.bursary_icons +
+                  " text-white bg-blackText px-3 py-2 rounded-[20px]"
+                }
+              >
                 <FaExchangeAlt />
-                Withdrawal / Out-flow
-              </div>
-              <div className={styles.bursary_icons}>
-                <BiBook />
-                History
+                Withdraw
               </div>
             </div>
           </ContentBox>
@@ -255,8 +260,7 @@ const Bursary = () => {
 const styles = {
   flex_containers:
     "flex items-center justify-center md:justify-start gap-6 flex-wrap w-full mb-6",
-  bursary_icons:
-    "flex items-center gap-x-3 text-darkGray font-bold hover:underline",
+  bursary_icons: "flex items-center gap-x-3 font-bold hover:underline",
 };
 
 export default Bursary;
