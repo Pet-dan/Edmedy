@@ -361,8 +361,8 @@ export const staffLessonNotes: StaffLessonNotesProps[] = [
 export const recentTransactionsHeaders: tableHeaders[] = [
   { text: "", width: 40 },
   { text: "Date", width: 80 },
-  { text: "Name", width: 200 },
-  { text: "Amount", width: 120 },
+  { text: "Name", width: 160 },
+  { text: "Amount", width: 80 },
   { text: "", width: 100 },
 ];
 
