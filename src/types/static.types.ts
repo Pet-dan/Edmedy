@@ -58,7 +58,7 @@ export interface bursaryTransactionsProps {
   date: string;
   name: string;
   amount: number;
-  transactionType: "inflow" | "outflow";
+  transactionType: "in-flow" | "out-flow";
 }
 
 export type monthsType =

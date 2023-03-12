@@ -192,12 +192,12 @@ const Bursary = () => {
                             <p>
                               <p
                                 className={`max-w-fit px-2 py-1 rounded-[20px] font-bold text-[14px] ${
-                                  transaction.transactionType === "inflow"
+                                  transaction.transactionType === "in-flow"
                                     ? "bg-green-100 text-green-800"
                                     : "bg-red-100 text-red-800"
                                 }`}
                               >
-                                {transaction.transactionType === "inflow" ? (
+                                {transaction.transactionType === "in-flow" ? (
                                   <RiArrowRightUpLine />
                                 ) : (
                                   <RiArrowRightDownLine />
