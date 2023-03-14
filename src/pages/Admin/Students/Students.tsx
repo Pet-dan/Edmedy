@@ -1,22 +1,22 @@
 import React, { FC, useEffect, useRef, useState } from "react";
 import { BiPlus, BiSearch } from "react-icons/bi";
 import { RiMenu2Line } from "react-icons/ri";
-import DashboardLayout from "../../components/DashboardLayout";
+import DashboardLayout from "../../../components/DashboardLayout";
 import TableLayout, {
   SingleTableHeader,
   SingleTableRowItem,
   TableHeader,
   TableRow,
   TableRowsContainer,
-} from "../../components/TableLayout";
+} from "../../../components/TableLayout";
 import { Link } from "react-router-dom";
 import {
   staffsHeader,
   staffsList,
   studentsHeader,
   studentsList,
-} from "../../static/data";
-import { ButtonFilled, OutlineButton } from "../../components/UI/Buttons";
+} from "../../../static/data";
+import { ButtonFilled, OutlineButton } from "../../../components/UI/Buttons";
 
 const Students = () => {
   return (
@@ -66,7 +66,7 @@ const Students = () => {
                     <TableRow key={index}>
                       <SingleTableRowItem width={studentsHeader[0].width}>
                         <Link
-                          to={`/admin/staffs/${rowItem.id}`}
+                          to={`/admin/students/${rowItem.id}`}
                           className="flex items-center gap-x-2 cursor-pointer"
                         >
                           <img

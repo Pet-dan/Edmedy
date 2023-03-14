@@ -38,7 +38,7 @@ interface singleProfileDetailProps {
   subtitle: string;
 }
 
-const SingleProfileDetail: FC<singleProfileDetailProps> = (props) => {
+export const SingleProfileDetail: FC<singleProfileDetailProps> = (props) => {
   return (
     <article className={styles.content}>
       <p className={styles.content_title}>{props.title}</p>
@@ -126,8 +126,8 @@ export const Profile = () => {
           <ContentBoxWithAvatar
             avatar={<GiBank />}
             header={"Account Information"}
-            hasButton={false}
-            buttonType={"Fill"}
+            hasButton={true}
+            buttonType={"OutlineBlack"}
             buttonLink={"/"}
             buttonText={"View Salary Record"}
           >
@@ -165,7 +165,7 @@ export const EmploymentRecord = () => {
           <TableRowsContainer>
             {staffEmploymentRecord.map((employmentRecord, index: number) => {
               return (
-                <TableRow>
+                <TableRow key={index}>
                   <SingleTableRowItem
                     width={staffEmploymentRecordHeaders[0].width}
                   >

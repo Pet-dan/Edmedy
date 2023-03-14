@@ -2,6 +2,7 @@ import React, { FC, ReactElement, useState } from "react";
 
 type TableLayoutProps = {
   children?: ReactElement[] | ReactElement;
+  padding?: boolean;
 };
 
 const TableLayout: FC<TableLayoutProps> = ({ children }) => {
@@ -20,13 +21,16 @@ export const TableHeader: FC<TableLayoutProps> = ({ children }) => {
   );
 };
 
-export const SingleTableHeader: FC<{ width: number; text: string }> = ({
-  width,
-  text,
-}) => {
+export const SingleTableHeader: FC<{
+  width: number;
+  text: string;
+  center?: boolean;
+}> = ({ width, text, center }) => {
   return (
     <h2
-      className="font-bold p-0 m-0 text-darkGray flex-1"
+      className={`font-bold p-0 m-0 text-darkGray flex-1 ${
+        center && "text-center"
+      }`}
       style={{ minWidth: `${width}px` }}
     >
       {text}
@@ -38,9 +42,13 @@ export const TableRowsContainer: FC<TableLayoutProps> = ({ children }) => {
   return <main className="w-full flex flex-col bg-white">{children}</main>;
 };
 
-export const TableRow: FC<TableLayoutProps> = ({ children }) => {
+export const TableRow: FC<TableLayoutProps> = ({ children, padding }) => {
   return (
-    <article className="flex items-center px-3 py-4 gap-2 border-b-[1.5px] min-w-fit">
+    <article
+      className={`flex items-center ${
+        padding && "py-4 px-3"
+      } gap-3 border-b-[1.5px] min-w-fit`}
+    >
       {children}
     </article>
   );
@@ -52,7 +60,7 @@ export const SingleTableRowItem: FC<{
 }> = ({ children, width }) => {
   return (
     <span
-      className="block text-[15px] flex-1"
+      className="block text-[15px] flex-1 w-full"
       style={{ minWidth: `${width}px` }}
     >
       {children}

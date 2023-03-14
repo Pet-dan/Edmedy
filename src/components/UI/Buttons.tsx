@@ -30,7 +30,7 @@ const ButtonFilled: FC<ButtonsType> = ({ icon, text }) => {
 
 const styles = {
   buttons:
-    "px-4 py-2 flex items-center justify-center capitalize text-center border-2 rounded-md font-bold gap-x-2 flex-nowrap min-w-fit",
+    "px-3 py-2 text-[13px] flex items-center justify-center capitalize text-center border-2 rounded-md font-bold gap-x-2 flex-nowrap min-w-fit",
 };
 
 export { ButtonFilled, OutlineButton };

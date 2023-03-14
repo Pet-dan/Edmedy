@@ -460,6 +460,129 @@ export const singleStaffDetails = {
   },
 };
 
+export const singleStudentDetails = {
+  user: {
+    name: "Adedamola Alegbe-James",
+    gender: "Male",
+    dob: "23/09/1998",
+    telephone: "08098309887",
+    email: "Jaiyeolaosanyin@gmail.com",
+    address: "5, Alade Crescent, Sabo, Kampala, Uganda",
+    class: "JSS 2",
+  },
+  parent: {
+    name: "Alage-James",
+    gender: "Male",
+    dob: "23/09/1998",
+    telephone: "08098309887",
+    email: "Jaiyeolaosanyin@gmail.com",
+    address: "5, Alade Crescent, Sabo, Kampala, Uganda",
+  },
+  tuition: {
+    total: 30000,
+    paid: 25000,
+    balance: 5000,
+  },
+  sickbayHistory: {
+    visits: 15,
+    lastVisited: "21/02/2023",
+    issueTreated: "Sport Injury",
+    nurse: "Jaiye Cynthia",
+  },
+};
+
+export const studentAttendanceHeaders: tableHeaders[] = [
+  { text: "", width: 100 },
+  { text: "Mon", width: 70 },
+  { text: "Tue", width: 70 },
+  { text: "Wed", width: 70 },
+  { text: "Thur", width: 70 },
+  { text: "Fri", width: 70 },
+];
+
+export const studentAttendance = [
+  {
+    week: 1,
+    days: [
+      { day: "Monday", present: true },
+      { day: "Tuesday", present: false },
+      { day: "Wednesday", present: true },
+      { day: "Thursday", present: true },
+      { day: "Friday", present: false },
+    ],
+  },
+  {
+    week: 2,
+    days: [
+      { day: "Monday", present: true },
+      { day: "Tuesday", present: false },
+      { day: "Wednesday", present: true },
+      { day: "Thursday", present: true },
+      { day: "Friday", present: false },
+    ],
+  },
+  {
+    week: 3,
+    days: [
+      { day: "Monday", present: true },
+      { day: "Tuesday", present: false },
+      { day: "Wednesday", present: true },
+      { day: "Thursday", present: true },
+      { day: "Friday", present: false },
+    ],
+  },
+  {
+    week: 4,
+    days: [
+      { day: "Monday", present: true },
+      { day: "Tuesday", present: false },
+      { day: "Wednesday", present: true },
+      { day: "Thursday", present: true },
+      { day: "Friday", present: false },
+    ],
+  },
+  {
+    week: 5,
+    days: [
+      { day: "Monday", present: true },
+      { day: "Tuesday", present: false },
+      { day: "Wednesday", present: true },
+      { day: "Thursday", present: true },
+      { day: "Friday", present: false },
+    ],
+  },
+  {
+    week: 6,
+    days: [
+      { day: "Monday", present: true },
+      { day: "Tuesday", present: false },
+      { day: "Wednesday", present: true },
+      { day: "Thursday", present: true },
+      { day: "Friday", present: false },
+    ],
+  },
+  {
+    week: 7,
+    days: [
+      { day: "Monday", present: true },
+      { day: "Tuesday", present: false },
+      { day: "Wednesday", present: true },
+      { day: "Thursday", present: true },
+      { day: "Friday", present: false },
+    ],
+  },
+  {
+    week: 8,
+    days: [
+      { day: "Monday", present: true },
+      { day: "Tuesday", present: false },
+      { day: "Wednesday", present: true },
+      { day: "Thursday", present: true },
+      { day: "Friday", present: false },
+    ],
+  },
+];
+
 export const staffEmploymentRecordHeaders: tableHeaders[] = [
   { text: "Title", width: 300 },
   { text: "Status", width: 300 },

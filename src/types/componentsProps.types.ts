@@ -45,9 +45,10 @@ export interface ContentBoxWithAvatarProps {
   header?: string;
   hasButton: boolean;
   buttonText?: string;
-  buttonType?: "Outline" | "Fill";
+  buttonType?: "Outline" | "Fill" | "OutlineBlack";
   buttonIcon?: ReactElement;
   buttonLink?: string;
+  onClick?: () => void;
 }
 export interface SmallContentBoxWithAvatarProps {
   avatar: ReactElement | string;

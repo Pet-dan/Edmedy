@@ -18,7 +18,8 @@ import Staffs from "./pages/Admin/Staffs/Staffs";
 import AddStaff from "./pages/Admin/Staffs/AddStaff";
 import EditStaff from "./pages/Admin/Staffs/EditStaff";
 import AdminStore from "./pages/Admin/AdminStore";
-import Students from "./pages/Admin/Students";
+import Students from "./pages/Admin/Students/Students";
+import SingleStudent from "./pages/Admin/Students/SingleStudent";
 import SubscriptionPlans from "./pages/SubscriptionPlans";
 import Generators from "./pages/Admin/Generators";
 
@@ -69,7 +70,10 @@ function App() {
           <Route path="new" element={<AddStaff />} />
           <Route path="edit/:id" element={<EditStaff />} />
         </Route>
-        <Route path="students" element={<Students />} />
+        <Route path="students/">
+          <Route index element={<Students />} />
+          <Route path=":id" element={<SingleStudent />} />
+        </Route>
         <Route path="calendar" element={<AdminCalendar />} />
         <Route path="sick-bay" element={<Sickbay />} />
         <Route path="bursary" element={<Bursary />} />

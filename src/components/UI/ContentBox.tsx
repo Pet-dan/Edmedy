@@ -4,7 +4,7 @@ import {
   ContentBoxWithAvatarProps,
   SmallContentBoxWithAvatarProps,
 } from "../../types/componentsProps.types";
-import { ButtonFilled, OutlineButton } from "./Buttons";
+import { ButtonFilled, OutlineButton, BlackOutlineButton } from "./Buttons";
 
 export const ContentBox: FC<ContentBoxProps> = ({
   children,
@@ -38,7 +38,7 @@ export const ContentBoxWithAvatarHeader: FC<ContentBoxWithAvatarProps> = ({
   buttonText,
 }) => {
   return (
-    <header className="w-full flex justify-between px-3 py-4 border-b-[1.5px] items-center">
+    <header className="w-full flex justify-between px-3 py-4 border-b-[1.5px] items-center flex-wrap">
       <div className="flex items-center gap-x-2 cursor-pointer">
         <span className="text-darkerGray bg-lightGray text-[1rem] font-bold flex items-center justify-center w-[26px] h-[26px] rounded-full">
           {avatar}
@@ -47,10 +47,14 @@ export const ContentBoxWithAvatarHeader: FC<ContentBoxWithAvatarProps> = ({
       </div>
       {hasButton && (
         <div className="">
-          {buttonType === "Fill" ? (
+          {buttonType === "Fill" && (
             <ButtonFilled text={buttonText as string} />
-          ) : (
+          )}{" "}
+          {buttonType === "Outline" && (
             <OutlineButton text={buttonText as string} />
+          )}
+          {buttonType === "OutlineBlack" && (
+            <BlackOutlineButton text={buttonText as string} />
           )}
         </div>
       )}
