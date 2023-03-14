@@ -31,6 +31,15 @@ export interface staffsListProps {
   position: string;
   location: string;
 }
+export interface studentsListProps {
+  id: number;
+  name: string;
+  image: string;
+  email: string;
+  phoneNumber: string;
+  class: string;
+  location: string;
+}
 
 export interface tableHeaders {
   text: string;
